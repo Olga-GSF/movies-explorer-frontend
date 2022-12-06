@@ -22,4 +22,6 @@
 
 @import url(../Footer/Footer.css);
 
+@import url(../../utils/Auth/auth.css);
 @import url(../Register/Register.css);
+@import url(../Login/Login.css);

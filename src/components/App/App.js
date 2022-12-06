@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 
 // import { useState, useEffect } from 'react';
 // import api from '../utils/api';
-// import Login from './Login.js';
+import Login from '../Login/Login';
 import Register from '../Register/Register';
 // import ProtectedRoute from '../../utils/ProtectedRoute';
 // import InfoTooltip from './InfoTooltip';
@@ -14,7 +14,7 @@ import Register from '../Register/Register';
 // import { Switch, Route, useHistory } from 'react-router-dom';
 // import { Switch, Route } from 'react-router-dom';
 
-// import * as auth from '../utils/auth';
+import * as auth from '../../utils/Auth/auth';
 
 function App() {
 
@@ -29,6 +29,7 @@ function App() {
         <Main />
         <Footer />
         <Register />
+        <Login />
 
         {/* <Switch>
           <Route exact path="/"
