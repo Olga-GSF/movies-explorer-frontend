@@ -1,0 +1,34 @@
+.footer {
+  max-width: 1280px;
+  min-height: 172px;
+  padding: 79px 70px 20px;
+  margin: auto;
+}
+
+.footer__cont-1 {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 70px;
+}
+
+.footer__cont-2 {
+  display: flex;
+}
+
+.footer__main-text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.1;
+  text-align: center;  
+  color: #A0A0A0;
+  padding: 0;
+}
+
+.footer__text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.1;
+  text-align: right;
+  color: #000000;
+  padding: 0;
+}

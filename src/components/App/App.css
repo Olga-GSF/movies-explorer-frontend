@@ -1,0 +1,25 @@
+@import url(../../vendor/normalize.css);
+
+@import url(../../vendor/fonts/inter.css);
+
+/* @import url(./blocks/body/body.css); */
+
+@import url(../Page/Page.css);
+
+@import url(../UniElements/Title.css);
+@import url(../UniElements/Line.css);
+@import url(../UniElements/Line-gray.css);
+
+
+@import url(../Header/Header.css);
+
+@import url(../Main/Main.css);
+@import url(../Main/Promo/Promo.css);
+@import url(../Main/AboutProject/AboutProject.css);
+@import url(../Main/Techs/Techs.css);
+@import url(../Main/AboutMe/AboutMe.css);
+@import url(../Main/Portfolio/Portfolio.css);
+
+@import url(../Footer/Footer.css);
+
+@import url(../Register/Register.css);
