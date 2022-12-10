@@ -1,5 +1,4 @@
 import './App.css';
-import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 
@@ -12,7 +11,7 @@ import Register from '../Register/Register';
 
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
 // import { Switch, Route, useHistory } from 'react-router-dom';
-// import { Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import * as auth from '../../utils/Auth/auth';
 
@@ -25,7 +24,6 @@ function App() {
   return (
     <div className="App">
       <div className="page">
-        <Header />
         <Main />
         <Footer />
         <Register />
@@ -33,12 +31,12 @@ function App() {
 
         {/* <Switch>
           <Route exact path="/"
-            component={Main}
-          loggedIn={loggedIn}
+            component={<Main />}
+          // loggedIn={loggedIn}
           />
 
           <Route path="/sign-in">
-            <Login handleLogin={handleLogin} />
+            <Login />
           </Route>
 
           <Route path="/sign-up">
