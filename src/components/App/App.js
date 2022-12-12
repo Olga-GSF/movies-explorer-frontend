@@ -1,19 +1,27 @@
 import './App.css';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
 import Main from '../Main/Main';
+import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
+import NotFound from '../NotFoundPage/NotFound';
+import Profile from '../Profile/Profile';
+import Navigation from '../Navigation/Navigation';
+
 import Footer from '../Footer/Footer';
 
 // import { useState, useEffect } from 'react';
 // import api from '../utils/api';
-import Login from '../Login/Login';
-import Register from '../Register/Register';
+
 // import ProtectedRoute from '../../utils/ProtectedRoute';
 // import InfoTooltip from './InfoTooltip';
+// import * as auth from '../../utils/Auth/auth';
 
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
 // import { Switch, Route, useHistory } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
 
-import * as auth from '../../utils/Auth/auth';
+
 
 function App() {
 
@@ -24,16 +32,19 @@ function App() {
   return (
     <div className="App">
       <div className="page">
-        <Main />
-        <Footer />
-        <Register />
-        <Login />
 
-        {/* <Switch>
-          <Route exact path="/"
-            component={<Main />}
-          // loggedIn={loggedIn}
-          />
+        <Switch>
+          <Route exact path="/">
+            <Main />
+          </Route>
+
+          <Route path="/movies">
+            <Movies />
+          </Route>
+
+          <Route path="/saved-movies">
+            <SavedMovies />
+          </Route>
 
           <Route path="/sign-in">
             <Login />
@@ -43,9 +54,20 @@ function App() {
             <Register />
           </Route>
 
-        </Switch> */}
+          <Route path="/profile">
+            <Profile />
+          </Route>
+
+          <Route path="/notfound">
+            <NotFound />
+          </Route>
+
+        </Switch>
+
+        <Footer />
 
         {/* {loggedIn && <Footer />} */}
+
       </div>
     </div>
   );

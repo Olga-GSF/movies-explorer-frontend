@@ -1,0 +1,104 @@
+.search__form {
+  max-width: 1280px;
+  min-height: 222px;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 70px 94px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  margin: auto;
+  }
+
+  .search__form-wrap {
+    max-width: 1280px;
+    min-height: 222px;
+    display: flex;
+    flex-direction: row;
+    padding: 80px 70px 94px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    align-items: center;
+  }
+
+  .search__input {
+    border-style: none;
+    max-width: 932px;
+    max-height: 48px;
+    margin-left: 22px;
+  }
+  
+  .search__input-container {
+    width: 932px;
+    min-height: 48px;
+    border: 1.5px solid rgba(170, 170, 170, .2);
+    
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .search__button {
+    width: 59px;
+    height: 34px;
+    background: #000000;
+    border-radius: 48px;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1.5;
+    text-align: center;
+    color: #FFFFFF;
+  }
+
+  .search__button:hover {
+    opacity: 0.5;
+  }
+
+  .search__button-on-off {
+    width: 36px;
+    height: 20px;
+    background-image: url(../../../images/on-off.svg);
+    border-style: none;
+  }
+
+  .search__button-on-off:hover {
+    opacity: 0.5;
+  }
+
+  .search__filter-short {
+    width: 117px;
+    height: 18px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.3;
+    color: #000000;
+    margin: 0 14px 0 41px;
+  }
+
+  .search__devider {
+    display: flex;
+    justify-content: center;
+    max-width: 1280px;
+    min-height: 166px;
+    align-items: center;
+  }
+
+  .search__button-more {
+    width: 320px;
+    height: 36px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000000;
+    background-color: #F9F9F9;
+    border-style: none;
+    }
+
+    .search__button-more:hover {
+      opacity: 0.5;
+    }

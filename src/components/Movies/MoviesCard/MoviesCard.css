@@ -4,7 +4,6 @@
   max-width: 364px;
   min-height: 271px;
   background: #FFFFFF;
-  border-radius: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -19,7 +18,17 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 25px auto 31px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.movie__title-container {
+  max-width: 280px;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -71,8 +80,8 @@
 }
 
 .movie__button-save {
-  width: 30px;
-  height: 30px;
+  width: 10px;
+  height: 13px;
   background-image: url(../../../images/save-inactive.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -84,22 +93,6 @@
 
 .movie__button-save:hover {
   opacity: 0.5;
-}
-
-.movie__button-delete {
-  width: 30px;
-  height: 30px;
-  background-image: url(../../../images/delete.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: transparent;
-  border: none;
-  background-size: contain;
-  transition: opacity 0.1s ease-out;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 0;
 }
 
 .movie__button-delete:hover {
