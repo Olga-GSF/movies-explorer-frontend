@@ -14,11 +14,6 @@ function Portfolio() {
             <img src={linegray} alt="линия" className="line-gray" />
             <li><a className="portfolio__link" href='https://github.com/Olga-GSF' rel="noreferrer" target="_blank">Одностраничное приложение</a></li>
           </ul>
-          <ul className="portfolio__items">
-            <img src={arrow} alt="стрелка" className="portfolio__arrow" />
-            <img src={arrow} alt="стрелка" className="portfolio__arrow" />
-            <img src={arrow} alt="стрелка" className="portfolio__arrow" />
-          </ul>
         </div>
       </section>
     </>

@@ -1,9 +1,15 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import Header from '../Header/Header';
 
 function Profile() {
+  const { setLoggedIn } = useContext(CurrentUserContext);
+  setLoggedIn(true);
   return (
     <>
+      <Header />
       <section className="auth">
         <img src={logo} alt="лого" className="header__logo" />
         <h2 className="auth__title">Привет, Виталий!</h2>

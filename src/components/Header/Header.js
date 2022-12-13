@@ -1,27 +1,22 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import logo from '../../images/logo.svg';
-import { useLocation, Link } from "react-router-dom";
-// import './Header.css';
+import { Link } from "react-router-dom";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import HeaderW from "./HeaderW/HeaderW";
 
 function Header(props) {
-  const { pathname } = useLocation();
-  // const textTitle = `${pathname === '/sign-in' ? 'Регистрация' : 'Войти'}`;
-  // const path = `${pathname === '/sign-in' ? '/sign-up' : '/sign-in'}`;
+  const { loggedIn } = useContext(CurrentUserContext);
+
   return (
-    <header className="header">
+    <header className={loggedIn ? "header header_color_white" : "header"}>
       <img src={logo} alt="лого" className="header__logo" />
-      <div className="header__button-container">
-        <Link to="/sign-up" className="header__button-signup" href="#">Регистрация</Link>
-        <Link to="/sign-in" className="header__button-signin" href="#">Войти</Link>
-      </div>
-      {/* <div>
-        {props.loggedIn ?
-          (<div className="header__container">
-            <p className="header__user-email">{props.email}</p>
-            <Link className="header__exit" to="" onClick={props.onLogOut}>Выйти</Link>
-          </div>) : (<Link to={path} className="reg__head-link">{textTitle}</Link>)
-        }
-      </div> */}
+      {/* <button className={isVisible && loggedIn ? "header__burger" : "header__burger header__burger_close"} onClick={() => setIsVisible(!isVisible)}>бургер</button> */}
+      {loggedIn ? <HeaderW /> :
+        <div className="header__button-container">
+          <Link to="/sign-up" className="header__button-signup" href="#">Регистрация</Link>
+          <Link to="/sign-in" className="header__button-signin" href="#">Войти</Link>
+        </div>
+      }
     </header>
   )
 }
