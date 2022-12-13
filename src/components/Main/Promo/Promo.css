@@ -4,6 +4,8 @@
   padding: 0 70px;
   max-width: 1280px;
   min-height: 574px;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .promo__container {

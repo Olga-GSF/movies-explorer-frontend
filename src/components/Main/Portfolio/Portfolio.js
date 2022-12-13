@@ -8,11 +8,11 @@ function Portfolio() {
         <h4 className="portfolio__title">Портфолио</h4>
         <div className="portfolio__container">
           <ul className="portfolio__items">
-            <li className="portfolio__point">Статичный сайт</li>
+            <li><a className="portfolio__link" href='https://github.com/Olga-GSF' rel="noreferrer" target="_blank">Статичный сайт</a></li>
             <img src={linegray} alt="линия" className="line-gray" />
-            <li className="portfolio__point">Адаптивный сайт</li>
+            <li><a className="portfolio__link" href='https://github.com/Olga-GSF' rel="noreferrer" target="_blank">Адаптивный сайт</a></li>
             <img src={linegray} alt="линия" className="line-gray" />
-            <li className="portfolio__point">Одностраничное приложение</li>
+            <li><a className="portfolio__link" href='https://github.com/Olga-GSF' rel="noreferrer" target="_blank">Одностраничное приложение</a></li>
           </ul>
           <ul className="portfolio__items">
             <img src={arrow} alt="стрелка" className="portfolio__arrow" />

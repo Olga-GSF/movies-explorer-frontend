@@ -5,6 +5,8 @@
   flex-direction: column;
   padding: 100px 70px;
   background-color: #F5F5F5;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .techs__title {
