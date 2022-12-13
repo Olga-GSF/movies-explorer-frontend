@@ -8,6 +8,29 @@
   box-sizing: border-box;
 }
 
+.promo__wrap {
+  display: flex;
+}
+
+/* @media screen and (max-width: 1023px) {
+  .promo__wrap {
+    max-width: 704px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .promo__wrap {
+    max-width: 440px;
+  }
+} */
+
+@media screen and (max-width: 424px) {
+  .promo__wrap {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 .promo__container {
   max-width: 640px;
   min-height: 574px;
@@ -47,6 +70,12 @@
   position: absolute;
   top: 75px;
   right: 70px;
+}
+
+@media screen and (max-width: 424px) {
+  .promo__image {
+    position: inherit;
+  }
 }
 
 .promo__button {

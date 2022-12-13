@@ -10,7 +10,6 @@ function Header(props) {
   return (
     <header className={loggedIn ? "header header_color_white" : "header"}>
       <img src={logo} alt="лого" className="header__logo" />
-      {/* <button className={isVisible && loggedIn ? "header__burger" : "header__burger header__burger_close"} onClick={() => setIsVisible(!isVisible)}>бургер</button> */}
       {loggedIn ? <HeaderW /> :
         <div className="header__button-container">
           <Link to="/sign-up" className="header__button-signup" href="#">Регистрация</Link>
