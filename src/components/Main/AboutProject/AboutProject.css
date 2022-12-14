@@ -6,6 +6,24 @@
   padding: 110px 70px;
   margin: auto;
   box-sizing: border-box;
+  /* margin: 0;
+  padding-left: 70px;
+  padding-right: 70px; */
+}
+
+@media screen and (max-width: 1023px) {
+  .about-project {
+    /* max-width: 768px;
+    max-height: 585px; */
+    padding: 0 50px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .about-project {
+    max-width: 284px;
+    padding: 0 18px;
+  }
 }
 
 .about-project__text {
@@ -13,6 +31,51 @@
   font-size: 14px;
   line-height: 1.4;
   color: #000000;
+  padding-top: 26px;
+  padding-bottom: 110px;
+  text-align: left;
+  margin: 0;
+}
+
+.about-project__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.1px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  /* border-bottom: 1px solid #000000; */
+  text-align: start;
+  margin-top: 100px;
+  padding-bottom: 23px;
+  margin: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .about-project__title {
+    margin-top: 90px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .about-project__title {
+    font-size: 18px;
+    line-height: 1.1;
+    margin-top: 70px;
+    padding-bottom: 28px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .about-project__text {
+    font-size: 11px;
+    line-height: 1.2;
+    padding-top: 16px;
+    padding-bottom: 56px;
+    text-align: left;
+  }
+  .about-project__text:last-child {
+    padding-bottom: 60px;
+}
 }
 
 .about-project__text-title {
@@ -20,7 +83,16 @@
   font-size: 20px;
   line-height: 1.2;
   letter-spacing: -0.04em;
+  text-align: left;
   color: #000000;
+  margin: 0;
+}
+
+@media screen and (max-width: 424px) {
+  .about-project__text-title {
+    font-size: 18px;
+    line-height: 1.1;
+  }
 }
 
 .about-project__grid-cont-info {
@@ -31,58 +103,109 @@
   list-style: none;
   padding:0;
   column-gap: 40px;
-  row-gap: 26px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   align-items: flex-end;
+  /* padding-top: 70px; */
 }
+
+@media screen and (max-width: 424px) {
+  .about-project__grid-cont-info {
+    column-gap: 30px;
+    /* row-gap: 22px; */
+    margin: 60px 18px;
+    /* grid-template-columns: repeat(2, 319px);
+    grid-template-rows: 48px 54px; */
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .about-project__grid-cont-info {
+    /* row-gap: 22px;
+    grid-template-rows: 44px 48px; */
+    grid-template-columns: 1fr;
+  }
+}
+
 .about-project__grid-cont-num {
   max-width: 1140px;
   min-height: 67px;
   display: grid;
-  margin: 0 auto;
+  margin: 0;
   list-style: none;
   padding:0;
-  row-gap: 14px;
-  /* grid-template-columns: 228px 912px; */
-  grid-template-columns: 1fr minmax(228px, 1fr);
-  grid-template-rows: 36px 36px;
-  align-items: center;
+  grid-template-columns: 1fr 4fr;
+  /* grid-template-columns: 1fr minmax(228px, 1fr); */
+  /* grid-template-rows: 36px 36px; */
+  /* align-items: center; */
+}
+
+@media screen and (max-width: 424px) {
+  .about-project__grid-cont-num {
+    grid-template-columns: 1.5fr 3fr;
+  }
 }
 
 .about-project__num-title1 {
-  align-content: center;
+  align-items: center;
   justify-content: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2px;
   text-align: center;
-  display: grid;
-  max-width: 228px;
+  display: flex;
+  margin: 0;
   min-height: 36px;
   color: #FFFFFF;
   background-color: #000000;
 }
+
+
+@media screen and (max-width: 424px) {
+  .about-project__num-title1 {
+    font-size: 11px;
+    line-height: 1.1;
+    min-height: 35px;
+  }
+}
+
 .about-project__num-title2 {
-  align-content: center;
+  align-items: center;
   justify-content: center;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2px;
   text-align: center;
   color: #000000;
-  display: grid;
+  display: flex;
+  margin: 0;
   max-width: 912px;
   min-height: 36px;
   background-color: #F2F2F2;
 }
 
+@media screen and (max-width: 424px) {
+  .about-project__num-title2 {
+    font-size: 11px;
+    line-height: 1.1;
+  }
+}
+
 .about-project__num {
   align-content: center;
   justify-content: center;
+  margin: 0;
+  padding: 14px 0 155px;
   font-weight: 500;
   font-size: 14px;
   line-height: 1.2;
   text-align: center;
   color: #A0A0A0;
+}
+
+@media screen and (max-width: 424px) {
+  .about-project__num {
+    font-size: 11px;
+    line-height: 1.1;
+    padding: 10px 0 93px;
+  }
 }

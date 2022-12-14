@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+// import './Navigation.css';
 
 function Navigation() {
   return (
     <>
-      <section className="nav-burger-popup">
+      <div className="nav__burger-popup">
         <button className="nav__burger-cross-button"></button>
         <ul className="nav__container">
           <li className="nav-item">
@@ -16,7 +17,7 @@ function Navigation() {
             <Link to="/savedmovies" className="nav__link">Сохраненные фильмы</Link>
           </li>
         </ul>
-      </section>
+      </div>
     </>
   )
 }

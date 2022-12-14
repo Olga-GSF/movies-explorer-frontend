@@ -160,13 +160,14 @@ padding: 0 30px;
   height: 32px;
   font-weight: 500;
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  text-align: right;
   border: 2px solid #AAAAAA;
   border-radius: 50px;
+  padding: 8px 12px;
+  box-sizing: border-box;
 }
 
 .header__link-account-button:hover {

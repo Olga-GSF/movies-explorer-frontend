@@ -1,13 +1,6 @@
-.nav__burger-popup {
-  max-width: 520px;
-  min-height: 1024px;
-  background-color: #ffffff;
-  display: block;
-  color: #000000;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
+/* .nav__burger-popup {
+  display: none;
+} */
 
 .nav__burger-popup_close {
   display: none;
@@ -17,13 +10,18 @@
   display: none;
 }
 
-@media screen and (max-width: 1073px) {
+@media screen and (max-width: 1023px) {
   .nav__burger-popup {
-    display: inherit;
-    margin: 0;
-    display: flex;
-    margin-right: 35px;
-    margin-bottom: 31px;
+    max-width: 520px;
+    min-height: 1024px;
+    background-color: #ffffff;
+    display: block;
+    color: #000000;
+    position: fixed;
+    right: 0;
+    top: 0;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -50,7 +48,7 @@
 }
 
 .nav__burger-cross-button {
-  background-image: url(../../images/delete-burger.svg);
+  background-image: url('../../images/delete-cross.svg');
   background-repeat: no-repeat;
   border: none;
   background-color: transparent;

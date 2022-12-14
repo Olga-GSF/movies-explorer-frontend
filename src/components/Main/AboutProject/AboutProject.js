@@ -4,13 +4,17 @@ import './AboutProject.css';
 function AboutProject() {
   return (
     <section className="about-project">
-      <h3 className="title">О проекте</h3>
+      <h3 className="about-project__title">О проекте</h3>
       <img src={line} alt="линия" className="line" />
       <ul className="about-project__grid-cont-info">
-        <li className="about-project__text-title">Дипломный проект включал 5 этапов</li>
-        <li className="about-project__text-title">На выполнение диплома ушло 5 недель</li>
-        <li className="about-project__text">Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</li>
-        <li className="about-project__text">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</li>
+        <li className="about-project__text-tt">
+          <h4 className='about-project__text-title'>Дипломный проект включал 5 этапов</h4>
+          <p className='about-project__text'>Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
+        </li>
+        <li className="about-project__text-tt">
+          <h4 className='about-project__text-title'>На выполнение диплома ушло 5 недель</h4>
+          <p className='about-project__text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
+        </li>
       </ul>
       <ul className="about-project__grid-cont-num">
         <li className="about-project__num-title1">1 неделя</li>
