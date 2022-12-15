@@ -1,22 +1,23 @@
 import { Link } from 'react-router-dom';
 // import './Navigation.css';
 
-function Navigation() {
+function Navigation({ setIsVisible, activePage }) {
   return (
     <>
       <div className="nav__burger-popup">
-        <button className="nav__burger-cross-button"></button>
+        <button className="nav__burger-cross-button" onClick={() => setIsVisible(false)}></button>
         <ul className="nav__container">
           <li className="nav-item">
             <Link to="/" className="nav__link">Главная</Link>
           </li>
           <li className="nav-item">
-            <Link to="/movies" className="nav__link">Фильмы</Link>
+            <Link to="/movies" className={activePage === 'movies' ? 'nav__link nav__link_active' : "nav__link"}>Фильмы</Link>
           </li>
           <li className="nav-item">
-            <Link to="/savedmovies" className="nav__link">Сохраненные фильмы</Link>
+            <Link to="/savedmovies" className={activePage === 'saved-movies' ? 'nav__link nav__link_active' : "nav__link"}>Сохраненные фильмы</Link>
           </li>
         </ul>
+        <Link to="/profile" className="header__link-account header__link-account-button" href="#">Аккаунт</Link>
       </div>
     </>
   )

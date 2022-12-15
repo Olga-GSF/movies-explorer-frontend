@@ -17,7 +17,7 @@ function Promo() {
           </p>
         </div>
       </div>
-      <Link to='#AboutProject' className="promo__button" href="#">Узнать больше</Link>
+      <a href='#AboutProject' className="promo__button">Узнать больше</a>
     </section>
   )
 }

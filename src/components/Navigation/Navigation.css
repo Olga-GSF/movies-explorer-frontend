@@ -12,23 +12,28 @@
 
 @media screen and (max-width: 1023px) {
   .nav__burger-popup {
-    max-width: 520px;
+    width: 520px;
     min-height: 1024px;
     background-color: #ffffff;
-    display: block;
+    display: flex;
     color: #000000;
+    z-index: 1;
     position: fixed;
     right: 0;
     top: 0;
-    justify-content: center;
+    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    padding: 159px 0 90px;
   }
 }
 
-/* .nav_is-open {
-  display: none;
-  background-color: rgba(0, 0, 0, .2);
-} */
+@media screen and (max-width: 424px) {
+  .nav__burger-popup {
+    width: 100vw;
+    height: 100vh;
+  }
+}
 
 .nav__burger-button {
   display: none;
@@ -41,15 +46,26 @@
   border: none;
 }
 
-@media screen and (max-width: 1073px) {
+@media screen and (max-width: 1023px) {
   .nav__burger-button {
     display: block;
   }
+  .nav__container {
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
 }
 
 .nav__burger-cross-button {
   background-image: url('../../images/delete-cross.svg');
   background-repeat: no-repeat;
+  background-size: contain;
   border: none;
   background-color: transparent;
   width: 22px;
@@ -59,19 +75,14 @@
   top: 22px;
 }
 
-/* @media screen and (max-width: 1073px) {
-  .nav__burger-button_close {
-    display: block;
-  }
-} */
-
-.nav__burger-button:hover {
+.nav__burger-cross-button:hover {
   cursor: pointer;
   opacity: 0.5;
 }
 
-.nav__container {
-
+.nav__burger-button:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .nav-item {
@@ -89,4 +100,14 @@
   text-align: center;
   color: #000000;
   text-decoration: none;
+}
+
+.nav__link:hover {
+  cursor: pointer;
+  opacity: 0.5;
+  /* border-bottom: 1px solid #000000; */
+}
+
+.nav__link_active {
+  border-bottom: 1px solid #000000;
 }

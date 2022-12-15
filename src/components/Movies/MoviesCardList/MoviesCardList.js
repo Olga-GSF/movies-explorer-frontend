@@ -1,132 +1,14 @@
+import MoviesCard from "../MoviesCard/MoviesCard";
+
 function MoviesCardList() {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
     <>
       <section className="movies">
         <ul className="movies__container">
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
-          <li className="movie__card">
-            <div className="movie__title-wrap">
-              <div className="movie__title-container">
-                <h2 className="movie__title">33 слова о дизайне</h2>
-                <p className="movie__long">1ч 47м</p>
-              </div>
-              <button type="button" aria-label="save" className="movie__button-save"></button>
-            </div>
-            <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
-          </li>
+          {arr.map((card) => <MoviesCard />)}
         </ul>
-        <div className="search__more">
-          <button className="search__button-more">Еще</button>
-        </div>
+        <button className="movies__button-more">Еще</button>
       </section>
     </>
   )

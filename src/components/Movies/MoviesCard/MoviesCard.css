@@ -1,14 +1,28 @@
 .movie__card {
-  margin: 0;
-  padding: 0;
   max-width: 364px;
-  min-height: 271px;
+  height: 271px;
   background: #FFFFFF;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   position: relative;
   object-fit: cover;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .movie__card {
+    max-width: 339px;
+    height: 258px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .movie__card {
+    width: 300px;
+    height: 236px;
+  }
 }
 
 .movie__title-wrap {
@@ -21,6 +35,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 14px;
+  box-sizing: border-box;
 }
 
 .movie__title-container {
@@ -79,10 +95,25 @@
   opacity: 0.9;
 }
 
+@media screen and (max-width: 1023px) {
+  .movie__image {
+    max-width: 339px;
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .movie__image {
+    width: 300px;
+    height: 168px;
+  }
+}
+
 .movie__button-save {
-  width: 10px;
-  height: 13px;
+  width: 30px;
+  height: 30px;
   background-image: url(../../../images/save-inactive.svg);
+  /* background-image: url(../../../images/save-active.svg); */
   background-repeat: no-repeat;
   background-position: center;
   background-color: transparent;

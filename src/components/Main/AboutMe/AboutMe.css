@@ -3,12 +3,46 @@
   max-height: 620px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding: 110px 70px 0;
-  margin: auto;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 1073px) {
+  .about-me {
+    max-width: 768px;
+    padding: 90px 50px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .about-me {
+    width: 320px;
+    padding: 70px 14px 0;
+  }
+}
+
 .about-me__title {
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.1px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  /* border-bottom: 1px solid #000000; */
+  text-align: start;
+  margin-top: 100px;
+  padding-bottom: 23px;
+}
+
+@media screen and (max-width: 639px) {
+  .about-me__title {
+    margin: 0;
+  }
+}
+
+.about-me__myname {
   font-weight: 400;
   font-size: 50px;
   line-height: 1.1;
@@ -16,6 +50,12 @@
   color: #000000;
   margin: 0 0 18px;
   padding: 0;
+}
+
+@media screen and (max-width: 1073px) {
+  .about-me__myname {
+    font-size: 40px;
+  }
 }
 
 .about-me__subtitle {
@@ -27,13 +67,38 @@
   padding: 0;
 }
 
-.about-me__sub-subtitle {
+@media screen and (max-width: 1073px) {
+  .about-me__subtitle {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+
+
+.about-me__about {
   font-weight: 400;
   font-size: 14px;
-  line-height: 1.2;
+  line-height: 1.5;
   color: #000000;
   margin: 0 0 99px;
   padding: 0;
+}
+
+@media screen and (max-width: 1073px) {
+  .about-me__about {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #000000;
+    mix-blend-mode: normal;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .about-me__about {
+    margin: 0 0 40px;
+  }
 }
 
 .about-me__link {
@@ -43,6 +108,12 @@
   color: #000000;
   margin: 0 0 101px;
   text-decoration: none;
+}
+
+@media screen and (max-width: 1073px) {
+  .about-me__link {
+    margin: 0 0 91px;
+  }
 }
 
 .about-me__photo {
@@ -57,9 +128,34 @@
   justify-content: space-between;
 }
 
+@media screen and (max-width: 1073px) {
+  .about-me__info {
+    gap: 49px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .about-me__info {
+    flex-direction: column-reverse;
+    width: 320px;
+  }
+}
+
 .about-me__info-text {
   display: flex;
   max-width: 600px;
   min-height: 326px;
   flex-direction: column;
+}
+
+@media screen and (max-width: 1073px) {
+  .about-me__info-text {
+    width: 364px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .about-me__info-text {
+    width: 292px;
+  }
 }

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Navigation from '../../Navigation/Navigation';
 import { Link } from "react-router-dom";
 
-function HeaderW() {
+function HeaderW({ activePage }) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <>
@@ -11,11 +11,11 @@ function HeaderW() {
       <div className={isVisible ? "header__button-container nav__burger-popup" : "nav__burger-popup_close"}>
       </div> */}
       <button className="nav__burger-button" onClick={() => setIsVisible(!isVisible)}></button>
-      {isVisible ? <Navigation /> : ''}
+      {isVisible ? <Navigation activePage={activePage} setIsVisible={setIsVisible} /> : ''}
       <div className="header__button-container-white">
-        <Link to="/movies" className="header__link" href="#">Фильмы</Link>
-        <Link to="/saved-movies" className="header__link" href="#">Сохраненные фильмы</Link>
-        <Link to="/profile" className="header__link-account" href="#"><button className="header__link-account-button">Аккаунт</button></Link>
+        <Link to="/movies" className={activePage === 'movies' ? 'header__link header__link_active' : "header__link"} href="#">Фильмы</Link>
+        <Link to="/saved-movies" className={activePage === 'saved-movies' ? 'header__link header__link_active' : "header__link"} href="#">Сохраненные фильмы</Link>
+        <Link to="/profile" className="header__link-account header__link-account-button" href="#">Аккаунт</Link>
       </div>
 
     </>

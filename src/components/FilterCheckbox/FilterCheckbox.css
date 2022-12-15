@@ -1,0 +1,28 @@
+.filter__toggle {
+  border-radius: 20px;
+  width: 36px;
+  height: 20px;
+  background-color: #ababab;
+  position: relative;
+  cursor: pointer;
+}
+
+.filter__toggle_active {
+  background-color: #2BE080;
+}
+
+.filter__toggle-handle {
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  left: 2px;
+  transition: left 0.2s linear;
+}
+
+.filter__toggle-handle_active {
+  left: 18px;
+}

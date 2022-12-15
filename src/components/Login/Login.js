@@ -26,12 +26,14 @@ function Login(props) {
   return (
     <>
       <section className="auth">
-        <img src={logo} alt="лого" className="header__logo" />
-        <h2 className="auth__title">Рады видеть!</h2>
+        <div className='auth__title-container'>
+          <img src={logo} alt="лого" className="header__logo" />
+          <h2 className="auth__title">Рады видеть!</h2>
+        </div>
         <form className="auth__form" onSubmit={handleSubmit}>
           <input className="auth__input" type="email" name="email" id="email" placeholder="Email" onChange={handleEmailChange} value={email || ''} required
           />
-          <input className="auth__input" type="password" name="password" id="password" placeholder="Пароль" onChange={handlePasswordChange} value={password || ''} required
+          <input className="auth__input" type="password" name="password" id="password" placeholder="Пароль" onChange={handlePasswordChange} value={password || ''} minLength="5" maxLength="12" required
           />
           <button className="auth__button" type="submit">Войти</button>
           <div className="auth__head-title">

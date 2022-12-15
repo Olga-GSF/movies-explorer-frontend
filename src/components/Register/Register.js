@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import * as auth from '../../utils/Auth/auth';
+import './Register.css';
 
 function Register(props) {
   const [password, setPassword] = useState('');
@@ -31,11 +31,13 @@ function Register(props) {
 
   return (
     <section className="auth">
-      <img src={logo} alt="лого" className="header__logo" />
-      <h2 className="auth__title">Добро пожаловать!</h2>
+      <div className='auth__title-container'>
+        <img src={logo} alt="лого" className="header__logo" />
+        <h2 className="auth__title">Добро пожаловать!</h2>
+      </div>
       <form className="auth__form" onSubmit={handleSubmit}>
         <input className="auth__input" type="name" name="name" id="name"
-          placeholder="Имя" onChange={handleNameChange} value={name || ''} required />
+          placeholder="Имя" onChange={handleNameChange} value={name || ''} minLength="2" maxLength="20" required />
         <input className="auth__input" type="email" name="email" id="email"
           placeholder="Email" onChange={handleEmailChange} value={email || ''} required />
         <input className="auth__input" type="password" name="password" id="password" placeholder="Пароль"

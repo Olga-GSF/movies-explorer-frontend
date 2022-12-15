@@ -9,7 +9,7 @@ function SavedMovies() {
   setLoggedIn(true);
   return (
     <>
-      <Header />
+      <Header activePage='saved-movies' />
       <SearchForm />
       <MoviesCardList />
 
