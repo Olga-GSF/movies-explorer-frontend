@@ -1,5 +1,5 @@
 .line {
-  max-width: 1140px;
+  width: 100%;
   min-height: 1px;
   background-color: #000000;
 }

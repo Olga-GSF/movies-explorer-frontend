@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../SavedMovies/MoviesCardList/MoviesCardList';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import Footer from '../Footer/Footer';
 
 function SavedMovies() {
   const { setLoggedIn } = useContext(CurrentUserContext);
@@ -12,6 +13,7 @@ function SavedMovies() {
       <Header activePage='saved-movies' />
       <SearchForm />
       <MoviesCardList />
+      <Footer />
 
     </>
   )

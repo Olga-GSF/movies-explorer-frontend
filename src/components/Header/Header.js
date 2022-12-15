@@ -8,12 +8,14 @@ function Header({ activePage }) {
   const { loggedIn } = useContext(CurrentUserContext);
 
   return (
-    <header className={loggedIn ? "header header_color_white" : "header"}>
-      <img src={logo} alt="лого" className="header__logo" />
+    <header className={loggedIn && activePage !== 'main' ? "header header_color_white" : "header"}>
+      <Link to='/'>
+        <img src={logo} alt="лого" className="header__logo" />
+      </Link>
       {loggedIn ? <HeaderW activePage={activePage} /> :
         <div className="header__button-container">
-          <Link to="/sign-up" className="header__button-signup" href="#">Регистрация</Link>
-          <Link to="/sign-in" className="header__button-signin" href="#">Войти</Link>
+          <Link to="/sign-up" className="header__button-signup">Регистрация</Link>
+          <Link to="/sign-in" className="header__button-signin">Войти</Link>
         </div>
       }
     </header>

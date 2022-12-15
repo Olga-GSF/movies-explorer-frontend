@@ -69,8 +69,6 @@ function App() {
 
           </Switch>
 
-          <Footer />
-
           {/* {loggedIn && <Footer />} */}
 
         </div>

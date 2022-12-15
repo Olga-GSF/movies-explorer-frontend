@@ -137,7 +137,7 @@
 @media screen and (max-width: 639px) {
   .about-me__info {
     flex-direction: column-reverse;
-    width: 320px;
+    align-items: center;
   }
 }
 

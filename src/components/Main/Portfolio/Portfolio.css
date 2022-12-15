@@ -21,7 +21,7 @@
   .portfolio {
     margin: 70px auto 0;
     width: 292px;
-    padding: 70px 14px 0;
+    padding: 0;
   }
 }
 
@@ -79,27 +79,27 @@
   display: block;
 }
 
+.portfolio__link::before {
+  content:'';
+  background-image: url(../../../images/arrow.svg);
+  width: 18px;
+  height: 17px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
 @media screen and (max-width: 639px) {
   .portfolio__link {
     font-size: 18px;
   }
 
   .portfolio__link::before {
-    content:'';
-    background-image: url(../../../images/arrow-small.svg);
-    width: 18px;
-    height: 18px;
+    /* background-image: url(../../../images/arrow-small.svg); */  
+    width: 11px;
+    height: 11px;
   }
-}
-
-.portfolio__link::before {
-  content:'';
-  background-image: url(../../../images/arrow.svg);
-  width: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  position: absolute;
-  right: 1px;
-  top: 50%;
-  transform: translate(0, -50%);
 }

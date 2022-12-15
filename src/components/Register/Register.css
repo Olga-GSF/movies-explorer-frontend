@@ -120,18 +120,27 @@
 .auth__input {
   width: 100%;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 1.1;
   font-weight: 500;
   box-sizing: border-box;
   border: none;
   background-color: transparent;
   height: 44px;
   border-bottom: 1px solid #E8E8E8;
-  color: #fff;
   outline: none;
   font-style: normal;
   margin-bottom: 24px;
+  position: relative;
 }
+
+/* .auth__input::placeholder {
+  position: absolute;
+  bottom: 10px;
+}
+.auth__input_active::placeholder {
+  position: absolute;
+  bottom: 20px;
+} */
 
 /* .auth__input:first-child {
   margin-bottom: 30px;
@@ -179,4 +188,16 @@
     align-items: center;
   }
 }
+/* .auth__input-wrap {
+  position: relative;
+}
 
+.auth__floating-label {
+  position: absolute;
+  left: 0;
+  top: 12px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+} */

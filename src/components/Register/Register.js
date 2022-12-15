@@ -7,6 +7,7 @@ function Register(props) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [isActive, setIsActive] = useState(false);
 
   function handlePasswordChange(evt) {
     setPassword(evt.target.value);
@@ -36,12 +37,17 @@ function Register(props) {
         <h2 className="auth__title">Добро пожаловать!</h2>
       </div>
       <form className="auth__form" onSubmit={handleSubmit}>
-        <input className="auth__input" type="name" name="name" id="name"
+
+        <input className='auth__input' onClick={() => setIsActive(true)} type="name" name="name" id="name"
           placeholder="Имя" onChange={handleNameChange} value={name || ''} minLength="2" maxLength="20" required />
-        <input className="auth__input" type="email" name="email" id="email"
+
+        <input className='auth__input' type="email" name="email" id="email"
           placeholder="Email" onChange={handleEmailChange} value={email || ''} required />
-        <input className="auth__input" type="password" name="password" id="password" placeholder="Пароль"
+
+
+        <input className='auth__input' type="password" name="password" id="password" placeholder="Пароль"
           onChange={handlePasswordChange} value={password || ''} required minLength="5" maxLength="12" />
+
         <button className="auth__button" type="submit">Зарегистрироваться</button>
 
         <div className="auth__head-title">
@@ -56,3 +62,20 @@ function Register(props) {
 }
 
 export default Register;
+
+{/* <div className='auth__input-wrap'>
+<input className={isActive ? 'auth__input auth__input_active' : 'auth__input'} onClick={() => setIsActive(true)} type="name" name="name" id="name"
+placeholder="Имя" onChange={handleNameChange} value={name || ''} minLength="2" maxLength="20" required />
+<span class="auth__floating-label">Имя</span>
+</div>
+<div className='auth__input-wrap'>
+<input className={isActive ? 'auth__input auth__input_active' : 'auth__input'} type="email" name="email" id="email"
+placeholder="Email" onChange={handleEmailChange} value={email || ''} required />
+<span class="auth__floating-label">Email</span>
+</div>
+<div className='auth__input-wrap'>
+<input className={isActive ? 'auth__input auth__input_active' : 'auth__input'} type="password" name="password" id="password" placeholder="Пароль"
+onChange={handlePasswordChange} value={password || ''} required minLength="5" maxLength="12" />
+<span class="auth__floating-label">Пароль</span>
+</div> */}
+

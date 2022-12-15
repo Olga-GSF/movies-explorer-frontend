@@ -126,6 +126,10 @@
   opacity: 0.5;
 }
 
+.movie__button-save_active {
+  background-image: url('../../../images/save-active.svg');
+}
+
 .movie__button-delete {
   width: 10px;
   height: 10px;

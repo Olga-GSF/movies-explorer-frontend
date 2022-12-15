@@ -17,6 +17,7 @@ function HeaderW({ activePage }) {
         <Link to="/saved-movies" className={activePage === 'saved-movies' ? 'header__link header__link_active' : "header__link"} href="#">Сохраненные фильмы</Link>
         <Link to="/profile" className="header__link-account header__link-account-button" href="#">Аккаунт</Link>
       </div>
+      {isVisible ? <div className='nav__overlay' onClick={() => setIsVisible(false)}></div> : ''}
 
     </>
   )

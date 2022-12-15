@@ -17,8 +17,9 @@
 }
 
 @media screen and (max-width: 424px) {
-  .not-found__subtitle {
+  .not-found__title {
     font-size: 80px;
+    margin-top: 329px;
   }
 }
 
@@ -48,6 +49,7 @@
   border-style: none;
   cursor: pointer;
   background-color: transparent;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 424px) {
