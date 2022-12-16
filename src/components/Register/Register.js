@@ -7,18 +7,52 @@ function Register(props) {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
-  const [isActive, setIsActive] = useState(false);
+  const [isNameError, setIsNameError] = useState(false);
+  const [isPassError, setIsPassError] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 
   function handlePasswordChange(evt) {
     setPassword(evt.target.value);
+    if (password.length > 5) {
+      setIsPassError(false)
+    }
+  }
+
+  function handlePasswordError(evt) {
+    if (password.length > 5) {
+      setIsPassError(false)
+    } else {
+      setIsPassError(true);
+    }
   }
 
   function handleEmailChange(evt) {
     setEmail(evt.target.value);
   }
 
+  function handleEmailError() {
+    if (!emailReg.test(email.toLowerCase())) {
+      setIsEmailError(true);
+    } else {
+      setIsEmailError(false);
+    }
+  }
+
   function handleNameChange(evt) {
     setName(evt.target.value);
+    if (name.length > 2) {
+      setIsNameError(false)
+    }
+  }
+
+  function handleNameError(evt) {
+    if (name.length > 2) {
+      setIsNameError(false)
+    } else {
+      setIsNameError(true);
+    }
   }
 
   function handleSubmit(evt) {
@@ -31,28 +65,29 @@ function Register(props) {
   }
 
   return (
-    <section className="auth">
-      <div className='auth__title-container'>
+    <section className="reg">
+      <div className='reg__title-container'>
         <img src={logo} alt="лого" className="header__logo" />
-        <h2 className="auth__title">Добро пожаловать!</h2>
+        <h2 className="reg__title">Добро пожаловать!</h2>
       </div>
-      <form className="auth__form" onSubmit={handleSubmit}>
+      <form className="reg__form" onSubmit={handleSubmit}>
 
-        <input className='auth__input' onClick={() => setIsActive(true)} type="name" name="name" id="name"
-          placeholder="Имя" onChange={handleNameChange} value={name || ''} minLength="2" maxLength="20" required />
+        <input className={isNameError ? 'reg__input reg__input-error' : 'reg__input'} type="name" name="name" id="name"
+          placeholder="Имя" onChange={handleNameChange} onBlur={handleNameError} value={name || ''} minLength="2" maxLength="20" required />
 
-        <input className='auth__input' type="email" name="email" id="email"
-          placeholder="Email" onChange={handleEmailChange} value={email || ''} required />
+        <input className={isEmailError ? 'reg__input reg__input-error' : 'reg__input'} type="email" name="email" id="email" placeholder="Email" onChange={handleEmailChange} value={email || ''} onBlur={handleEmailError} required
+        />
 
+        <input className={isPassError ? 'reg__input reg__input-error' : 'reg__input'} type="password" name="password" id="password" placeholder="Пароль" onChange={handlePasswordChange} onBlur={handlePasswordError} value={password || ''} minLength="5" maxLength="12" required
+        />
+        {isPassError || isEmailError ? <p className="reg__error">Что-то пошло не так...</p> : ''}
 
-        <input className='auth__input' type="password" name="password" id="password" placeholder="Пароль"
-          onChange={handlePasswordChange} value={password || ''} required minLength="5" maxLength="12" />
+        <button className={!isEmailError && !isPassError && password !== '' && email !== '' && name !== '' ? 'reg__button' : "reg__button reg__button_disabled"} type="submit"
+          disabled={!isEmailError && !isPassError ? false : true}>Зарегистрироваться</button>
 
-        <button className="auth__button" type="submit">Зарегистрироваться</button>
-
-        <div className="auth__head-title">
-          <p className="auth__head-text">
-            Уже зарегистрированы? <Link to="/sign-in" className="auth__head-link">Войти</Link>
+        <div className="reg__head-title">
+          <p className="reg__head-text">
+            Уже зарегистрированы? <Link to="/sign-in" className="reg__head-link">Войти</Link>
           </p>
         </div>
       </form>

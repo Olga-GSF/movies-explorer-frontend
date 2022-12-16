@@ -16,13 +16,6 @@
   margin-bottom: 5px;
 }
 
-@media screen and (max-width: 424px) {
-  .not-found__title {
-    font-size: 80px;
-    margin-top: 329px;
-  }
-}
-
 .not-found__subtitle {
   font-weight: 400;
   font-size: 16px;
@@ -30,14 +23,6 @@
   text-align: center;
   color: #000000;
   margin-bottom: 184px;
-}
-
-@media screen and (max-width: 424px) {
-  .not-found__subtitle {
-    margin-bottom: 284px;
-    font-size: 12px;
-    
-  }
 }
 
 .not-found__button {
@@ -52,13 +37,23 @@
   text-decoration: none;
 }
 
-@media screen and (max-width: 424px) {
-  .not-found__button {
-    font-size: 12px;
-  }
-}
-
 .not-found__button:hover {
   opacity: 0.5;
 
+}
+
+@media screen and (max-width: 424px) {
+  .not-found__title {
+    font-size: 80px;
+    margin-top: 329px;
+  }
+
+  .not-found__subtitle {
+    margin-bottom: 284px;
+    font-size: 12px;
+  }
+
+  .not-found__button {
+    font-size: 12px;
+  }
 }

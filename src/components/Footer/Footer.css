@@ -6,55 +6,16 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 1073px) {
-  .footer {
-    max-width: 768px;
-    padding: 79px 30px 20px;
-    box-sizing: border-box;
-    margin: 90px auto 0;
-  }
-}
-
-@media screen and (max-width: 639px) {
-  .footer {
-    max-width: 320px;
-    padding: 79px 10px 20px;
-    box-sizing: border-box;
-    margin: 90px auto 0;
-  }
-}
-
 .footer__cont-1 {
   display: flex;
   justify-content: space-between;
   margin: 20px 70px;
 }
 
-@media screen and (max-width: 1073px) {
-  .footer__cont-1 {
-    width: 708px;
-    margin: 20px auto 0;
-  }
-}
-
-@media screen and (max-width: 639px) {
-  .footer__cont-1 {
-    flex-direction: column-reverse;
-    width: 300px;
-  }
-}
-
 .footer__cont-2 {
   display: flex;
   width: 182px;
   justify-content: space-between;
-}
-
-@media screen and (max-width: 639px) {
-  .footer__cont-2 {
-    flex-direction: column;
-    width: 300px;
-  }
 }
 
 .footer__main-text {
@@ -67,13 +28,6 @@
   margin: 0 auto;
 }
 
-@media screen and (max-width: 639px) {
-  .footer__main-text {
-    width: 300px;
-    font-size: 12px;
-  }
-}
-
 .footer__text {
   font-weight: 400;
   font-size: 13px;
@@ -81,13 +35,6 @@
   text-align: right;
   color: #000000;
   padding: 0;
-}
-
-@media screen and (max-width: 639px) {
-  .footer__text {
-    text-align: center;
-    font-size: 12px;
-  }
 }
 
 .footer__text-copyright {
@@ -99,11 +46,51 @@
   padding: 0;
 }
 
+@media screen and (max-width: 1023px) {
+  .footer {
+    max-width: 768px;
+    padding: 79px 30px 20px;
+    box-sizing: border-box;
+    margin: 0 auto 0;
+  }
+
+  .footer__cont-1 {
+    width: 708px;
+    margin: 20px auto 0;
+  }
+}
+
 @media screen and (max-width: 639px) {
+  .footer {
+    max-width: 320px;
+    padding: 79px 10px 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  .footer__cont-1 {
+    flex-direction: column-reverse;
+    width: 300px;
+  }
+
+  .footer__cont-2 {
+    flex-direction: column;
+    width: 300px;
+  }
+
+  .footer__main-text {
+    width: 300px;
+    font-size: 12px;
+  }
+
+  .footer__text {
+    text-align: center;
+    font-size: 12px;
+  }
+
   .footer__text-copyright {
     text-align: center;
     font-size: 12px;
     color: #A0A0A0;
   }
 }
-

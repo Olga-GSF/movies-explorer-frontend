@@ -1,38 +1,9 @@
-/* .nav__burger-popup {
-  display: none;
-} */
-
 .nav__burger-popup_close {
   display: none;
 }
 
 .nav__burger-popup {
   display: none;
-}
-
-@media screen and (max-width: 1023px) {
-  .nav__burger-popup {
-    width: 520px;
-    min-height: 1024px;
-    background-color: #ffffff;
-    display: flex;
-    color: #000000;
-    z-index: 3;
-    position: fixed;
-    right: 0;
-    top: 0;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    padding: 159px 0 90px;
-  }
-}
-
-@media screen and (max-width: 424px) {
-  .nav__burger-popup {
-    width: 100vw;
-    height: 100vh;
-  }
 }
 
 .nav__burger-button {
@@ -44,22 +15,6 @@
   background-position: center;
   background-color: transparent;
   border: none;
-}
-
-@media screen and (max-width: 1023px) {
-  .nav__burger-button {
-    display: block;
-  }
-  .nav__container {
-    flex-direction: column;
-    justify-content: space-between;
-    margin: auto;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-  }
-
 }
 
 .nav__burger-cross-button {
@@ -122,3 +77,68 @@
   opacity: 0.3;
   z-index: 2;
 }
+
+@media screen and (max-width: 1023px) {
+  .nav__burger-popup {
+    width: 520px;
+    height: calc(100vh - 159px);
+    background-color: #ffffff;
+    display: flex;
+    color: #000000;
+    z-index: 3;
+    position: fixed;
+    right: 0;
+    top: 0;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding: 159px 0 90px;
+  }
+
+  .nav__burger-button {
+    display: block;
+  }
+  .nav__container {
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .nav__burger-popup {
+    width: 100vw;
+    height: calc(100vh - 159px);
+    min-height: 0;
+  }
+
+}
+
+
+
+
+
+/* .popup {
+  align-items: center;
+  background-color: rgba(0,0,0,.5);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: visibility .5s,opacity .5s;
+  visibility: hidden;
+}
+.popup_is-open {
+  display: flex;
+  opacity: 1;
+  transition: visibility .5s,opacity .5s;
+  visibility: visible;  
+} */

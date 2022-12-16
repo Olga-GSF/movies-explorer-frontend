@@ -1,7 +1,14 @@
-function Preloader({ setIsVisible, activePage }) {
-  return (
-    <div class="preload-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-  )
-}
+import React from 'react'
+import './Preloader.css'
 
-export default Preloader;
+const Preloader = () => {
+  return (
+    <div className="preloader">
+      <div className="preloader__container">
+        <span className="preloader__round"></span>
+      </div>
+    </div>
+  )
+};
+
+export default Preloader
