@@ -1,5 +1,7 @@
 # movies-explorer-frontend
 
+ССЫЛКА НА МАКЕТ https://disk.yandex.ru/d/IKQh4uwWtfkChg
+
 # Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -18,6 +20,7 @@ npm run dev — запускает сервер с hot-reload
 Ссылка на GitHub https://github.com/Olga-GSF/movies-explorer-frontend/tree/level-2
 
 Контакты Olga-GSF - Olga-GSF@example.com
+
 
 ## Available Scripts
 In the project directory, you can run:
