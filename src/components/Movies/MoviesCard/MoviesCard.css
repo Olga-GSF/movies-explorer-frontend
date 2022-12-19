@@ -1,0 +1,157 @@
+.movie__card {
+  max-width: 364px;
+  height: 271px;
+  /* background: #FFFFFF; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+  background-color: #FDFDFD;
+  box-shadow: 0px 4px 30px rgb(0 0 0 / 8%);
+}
+
+.movie__title-wrap {
+  max-width: 364px;
+  min-height: 68px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+.movie__title-container {
+  max-width: 280px;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.movie__title {
+  max-width: 280px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.1;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie__duration {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  color: #A0A0A0;
+  padding: 0;
+  margin: 0;
+}
+
+.movie__save-container{
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: 22px;
+}
+
+.movie__image {
+  margin: 0;
+  width: 364px;
+  height: 203px;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.1s ease-out;
+}
+
+.movie__image:hover {
+  opacity: 0.9;
+}
+
+.movie__button-save {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../../images/save-inactive.svg);
+  /* background-image: url(../../../images/save-active.svg); */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  background-size: contain;
+  transition: opacity 0.1s ease-out;
+}
+
+.movie__button-save:hover {
+  opacity: 0.5;
+}
+
+.movie__button-save_active {
+  background-image: url('../../../images/save-active.svg');
+}
+
+.movie__button-delete {
+  width: 10px;
+  height: 10px;
+  background-image: url(../../../images/delete-cross.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  background-size: contain;
+  transition: opacity 0.1s ease-out;
+}
+
+.movie__button-delete:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 1023px) {
+  .movie__card {
+    max-width: 339px;
+    height: 258px;
+  }
+
+  .movie__image {
+    max-width: 339px;
+    height: 190px;
+  }
+}
+
+/* @media screen and (max-width: 720px) {
+  .movie__card {
+    max-width: 282px;
+    height: 215px;
+  }
+
+  .movie__image {
+    max-width: 282px;
+    height: 158px;
+  }
+} */
+
+@media screen and (max-width: 424px) {
+  .movie__card {
+    width: 300px;
+    height: 236px;
+  }
+
+  .movie__image {
+    width: 300px;
+    height: 168px;
+  }
+}
