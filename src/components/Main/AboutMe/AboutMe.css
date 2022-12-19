@@ -133,11 +133,18 @@
 @media screen and (max-width: 768px) {
   .about-me__info {
     gap: 10px;
-    flex-direction: column-reverse;
+    flex-direction: row;
   }
   .about-me__info-text {
     width: 100%;
     min-height: 306px;
+  }
+}
+
+@media screen and (max-width: 512px) {
+  .about-me__info {
+    gap: 10px;
+    flex-direction: column-reverse;
   }
 }
 
