@@ -100,6 +100,7 @@
     min-height: 100px;
     max-width: 680px;
     min-height: 100px;
+    margin: 0 auto;
   }
 
   .promo__subtitle {

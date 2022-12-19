@@ -132,7 +132,7 @@
   }
 }
 
-@media screen and (max-width: 720px) {
+/* @media screen and (max-width: 720px) {
   .movie__card {
     max-width: 282px;
     height: 215px;
@@ -142,7 +142,7 @@
     max-width: 282px;
     height: 158px;
   }
-}
+} */
 
 @media screen and (max-width: 424px) {
   .movie__card {

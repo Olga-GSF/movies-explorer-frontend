@@ -5,6 +5,7 @@
   background-color: #ababab;
   position: relative;
   cursor: pointer;
+  margin-left: 14px;
 }
 
 .filter__toggle_active {
