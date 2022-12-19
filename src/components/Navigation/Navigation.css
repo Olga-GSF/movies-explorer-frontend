@@ -98,7 +98,7 @@
   .nav__burger-button {
     display: block;
   }
-  .nav__container {
+  .nav__items {
     flex-direction: column;
     justify-content: space-between;
     margin: auto;

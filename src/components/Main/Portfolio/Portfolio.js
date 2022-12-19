@@ -6,7 +6,7 @@ function Portfolio() {
     <>
       <section className="portfolio">
         <h4 className="portfolio__title">Портфолио</h4>
-        <ul className="portfolio__items">
+        <ul className="portfolio__links">
           <li><a className="portfolio__link" href='https://github.com/Olga-GSF' rel="noreferrer" target="_blank">Статичный сайт</a></li>
           <img src={linegray} alt="линия" className="line-gray" />
           <li><a className="portfolio__link" href='https://github.com/Olga-GSF' rel="noreferrer" target="_blank">Адаптивный сайт</a></li>

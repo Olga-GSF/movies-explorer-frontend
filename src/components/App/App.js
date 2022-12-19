@@ -29,7 +29,6 @@ function App() {
 
   // const history = useHistory();
 
-
   return (
     <CurrentUserContext.Provider value={{
       loggedIn: loggedIn,

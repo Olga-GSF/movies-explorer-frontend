@@ -4,7 +4,7 @@ import linegray from '../../images/stroke-portfolio.svg';
 function Footer() {
   return (
     <footer className="footer">
-      <p className="footer__main-text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
+      <h4 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h4>
       <img src={linegray} alt="линия" className="line-gray" />
       <div className="footer__cont-1">
         <p className="footer__text-copyright">&copy; 2020</p>

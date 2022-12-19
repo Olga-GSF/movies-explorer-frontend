@@ -18,7 +18,7 @@
   margin: 0 0 50px;
 }
 
-.portfolio__items {
+.portfolio__links {
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -64,7 +64,7 @@
     margin: 0 0 50px;
   }
 
-  .portfolio__items {
+  .portfolio__links {
     max-width: 635px;
     min-height: 230px;
   }
@@ -73,22 +73,26 @@
 @media screen and (max-width: 639px) {
   .portfolio {
     margin: 70px auto 0;
-    width: 292px;
+    max-width: 286px;
+    width: 100%;
     padding: 0;
   }
 
   .portfolio__title {
-    margin: 0 0 40px;
+    margin: 0 0 40px 14px;
+    font-size: 14px;
   }
 
-  .portfolio__items {
+  .portfolio__links {
     justify-content: space-around;
     min-height: 164px;
-    margin: 0 0 70px;
+    margin: 0 auto 70px;
+    width: 100%;
+    max-width: 268px;
   }
 
   .portfolio__link {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .portfolio__link::before {

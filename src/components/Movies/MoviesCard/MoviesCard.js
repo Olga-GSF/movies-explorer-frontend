@@ -8,7 +8,7 @@ function MoviesCard() {
       <div className="movie__title-wrap">
         <div className="movie__title-container">
           <h2 className="movie__title">33 слова о дизайне</h2>
-          <p className="movie__long">1ч 47м</p>
+          <p className="movie__duration">1ч 47м</p>
         </div>
         <button onClick={() => setIsSaved(!isSaved)} type="button" aria-label="save" className={isSaved ? "movie__button-save movie__button-save_active" : "movie__button-save"}></button>
       </div>

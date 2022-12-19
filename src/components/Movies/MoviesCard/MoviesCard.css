@@ -1,7 +1,7 @@
 .movie__card {
   max-width: 364px;
   height: 271px;
-  background: #FFFFFF;
+  /* background: #FFFFFF; */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -9,6 +9,8 @@
   object-fit: cover;
   margin: 0;
   padding: 0;
+  background-color: #FDFDFD;
+  box-shadow: 0px 4px 30px rgb(0 0 0 / 8%);
 }
 
 .movie__title-wrap {
@@ -49,7 +51,7 @@
   text-overflow: ellipsis;
 }
 
-.movie__long {
+.movie__duration {
   font-weight: 400;
   font-size: 11px;
   line-height: 1;
@@ -127,6 +129,18 @@
   .movie__image {
     max-width: 339px;
     height: 190px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .movie__card {
+    max-width: 282px;
+    height: 215px;
+  }
+
+  .movie__image {
+    max-width: 282px;
+    height: 158px;
   }
 }
 

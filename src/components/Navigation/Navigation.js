@@ -6,7 +6,7 @@ function Navigation({ setIsVisible, activePage }) {
     <>
       <div className="nav__burger-popup">
         <button className="nav__burger-cross-button" onClick={() => setIsVisible(false)}></button>
-        <ul className="nav__container">
+        <ul className="nav__items">
           <li className="nav-item">
             <Link to="/" className="nav__link">Главная</Link>
           </li>

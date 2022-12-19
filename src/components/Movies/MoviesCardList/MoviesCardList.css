@@ -74,7 +74,21 @@
   }
 }
 
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 720px) {
+  .movies {
+    width: 720px;
+    padding: 70px 20px 80px;
+  }
+
+  .movies__container {
+    max-width: 584px;
+    gap: 36px 20px;
+    grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+    margin: 0 0 30px;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .movies {
     width: 320px;
     padding: 40px 10px 80px;

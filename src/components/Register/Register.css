@@ -20,6 +20,8 @@
   text-align: center;
   margin: 152px auto 16px;  
   cursor: pointer;
+  border: none;
+
 }
 
 .reg__button:hover {

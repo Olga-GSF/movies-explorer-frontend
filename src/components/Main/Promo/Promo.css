@@ -126,14 +126,14 @@
 @media screen and (max-width: 424px) {
   .promo {
     padding: 70px 10px 40px;
-    min-width: 300px;
+    width: 100%;
   }
 
   .promo__title {
     font-size: 30px;
     line-height: 1.2;
     letter-spacing: -0.04em;
-    width: 300px;
+    width: 100%;
     min-height: 114px;
     padding: 0;
   }

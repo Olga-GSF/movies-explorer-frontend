@@ -29,6 +29,15 @@
   }
 }
 
+@media screen and (max-width: 720px) {
+  .saved-movies {
+    width: 720px;
+    padding: 70px 30px 0;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+}
+
 @media screen and (max-width: 424px) {
   .saved-movies {
     width: 320px;
