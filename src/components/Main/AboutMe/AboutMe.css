@@ -61,6 +61,7 @@
   display: flex;
   margin-top: 66px;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .about-me__photo {
