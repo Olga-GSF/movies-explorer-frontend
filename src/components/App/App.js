@@ -26,6 +26,9 @@ import { Switch, Route } from 'react-router-dom';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  // const [userEmail, setUserEmail] = useState();
+  // const [userName, setUserName] = useState();
+  const [currentUser, setCurrentUser] = useState();
   // const history = useHistory();
 
   // function handleRegistration(email, password) {
@@ -65,6 +68,9 @@ function App() {
     <CurrentUserContext.Provider value={{
       loggedIn: loggedIn,
       setLoggedIn: setLoggedIn,
+      currentUser: currentUser,
+      setCurrentUser: setCurrentUser,
+
     }}>
       <div className="App">
         <div className="page">

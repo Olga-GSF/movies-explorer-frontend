@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { withRouter } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+// import { withRouter } from "react-router-dom";
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
+import * as auth from '../../utils/auth';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Login(props) {
   const [password, setPassword] = useState('');
@@ -9,6 +11,8 @@ function Login(props) {
   const [isPassError, setIsPassError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const history = useHistory();
+  const { setLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
 
 
   function handlePasswordChange(evt) {
@@ -40,12 +44,24 @@ function Login(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    props.handleLogin(
-      email,
-      password
-    );
+    auth.login(email, password)
+      .then(data => {
+        console.log(data);
+        if (data.token) {
+          localStorage.setItem('jwt', data.token);
+          setCurrentUser(email)
+          setLoggedIn(true);
+          history.push('/movies');
+        }
+      })
+      .catch((err) => {
+        // setInfoTooltipOpen(true)//открываем попап InfoTooltip
+        console.log(err);
+      })
   }
+
   return (
+
     <>
       <section className="login">
         <div className='login__title-container'>
@@ -65,7 +81,7 @@ function Login(props) {
             disabled={!isEmailError && !isPassError ? false : true}>Войти</button>
           <div className="login__head-title">
             <p className="login__head-text">
-              Ещё не зарегистрированы? <Link to="/sign-in" className="login__head-link">Регистрация</Link>
+              Ещё не зарегистрированы? <Link to="/sign-up" className="login__head-link">Регистрация</Link>
             </p>
           </div>
         </form>

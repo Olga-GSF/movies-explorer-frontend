@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import './Register.css';
 // import MainApi from '../../utils/MainApi';
 import * as auth from '../../utils/auth';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Register(props) {
   const [password, setPassword] = useState('');
@@ -13,6 +14,8 @@ function Register(props) {
   const [isPassError, setIsPassError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const history = useHistory();
+  const { setLoggedIn, setUserEmail } = useContext(CurrentUserContext);
 
 
   function handlePasswordChange(evt) {
@@ -59,14 +62,19 @@ function Register(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    auth.register({
-      name: name,
-      password: password,
-      email: email,
-    })
-      .then(res => res.json())
+    auth.register(name, email, password)
       .then(data => {
         console.log(data);
+        if (data) {
+          setLoggedIn(true)
+          // setInfoTooltipOpen(true)
+          history.push('/movies');
+        }
+      })
+      .catch((err) => {
+        setLoggedIn(false)
+        // setInfoTooltipOpen(true)
+        console.log(err);
       })
   }
 
