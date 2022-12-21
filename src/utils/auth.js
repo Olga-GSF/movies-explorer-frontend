@@ -1,4 +1,5 @@
-const BASE_URL = "https://olga-mesto.15front.nomoredomains.icu";
+// const BASE_URL = "https://api.movies-olga.nomoredomains.icu/";
+const BASE_URL = "http://localhost:3002";
 
 function getJsonOrError(res) {
   if (res.ok) {
@@ -8,13 +9,14 @@ function getJsonOrError(res) {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-export const register = (email, password) => {
+export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
+      name,
       email,
       password
     })
@@ -46,3 +48,25 @@ export const checkToken = (token) => {
   })
     .then(getJsonOrError)
 }
+
+// signUp(body) { // email и password required!
+//   return fetch(`${this.url}/signup`, {
+//     method: "POST",
+//     headers: {
+//       "Accept": "application/json",
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(body)
+//   })
+// }
+
+// signIn(body) { // email и password required!
+//   return fetch(`${this.url}/signin`, {
+//     method: "POST",
+//     headers: {
+//       "Accept": "application/json",
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(body)
+//   })
+// }

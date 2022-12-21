@@ -15,7 +15,7 @@ import { useState, useEffect } from 'react';
 
 // import ProtectedRoute from '../../utils/ProtectedRoute';
 // import InfoTooltip from './InfoTooltip';
-// import * as auth from '../../utils/Auth/auth';
+import * as auth from '../../utils/auth';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 // import { Switch, Route, useHistory } from 'react-router-dom';
@@ -26,8 +26,40 @@ import { Switch, Route } from 'react-router-dom';
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
-
   // const history = useHistory();
+
+  // function handleRegistration(email, password) {
+  //   auth.register(email, password)
+  //     .then((data) => {
+  //       if (data) {
+  //         setStatus(true)
+  //         setInfoTooltipOpen(true)
+  //         history.push('/sign-in');
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setStatus(false)
+  //       setInfoTooltipOpen(true)
+  //       console.log(err);
+  //     })
+  // }
+
+  // function handleLogin(email, password) {
+  //   auth.login(email, password)
+  //     .then((data) => {
+  //       console.log(data);
+  //       if (data.token) {
+  //         localStorage.setItem('jwt', data.token);
+  //         setEmail(email)
+  //         setLoggedIn(true);
+  //         history.push('/');
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setInfoTooltipOpen(true)//открываем попап InfoTooltip
+  //       console.log(err);
+  //     })
+  // }
 
   return (
     <CurrentUserContext.Provider value={{

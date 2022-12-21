@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import './Register.css';
+// import MainApi from '../../utils/MainApi';
+import * as auth from '../../utils/auth';
 
 function Register(props) {
   const [password, setPassword] = useState('');
@@ -57,11 +59,15 @@ function Register(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    props.handleRegistration(
-      name,
-      email,
-      password
-    );
+    auth.register({
+      name: name,
+      password: password,
+      email: email,
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      })
   }
 
   return (
