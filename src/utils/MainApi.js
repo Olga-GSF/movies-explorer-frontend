@@ -70,9 +70,9 @@ class Api {
   //     .then(this._getJsonOrError)
   // }
 
-  // changeLikeCardStatus(id, isLiked) {
-  //   return fetch(`${this._url}/cards/${id}/likes`, {
-  //     method: isLiked ? 'PUT' : 'DELETE',
+  // changeSaveCardStatus(id, isSaved) {
+  //   return fetch(`${this._url}/movies/${id}/saved`, {
+  //     method: isSaved ? 'PUT' : 'DELETE',
   //     headers: this._getHeaders(),
   //   })
   //     .then(this._getJsonOrError)

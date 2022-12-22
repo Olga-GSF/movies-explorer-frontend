@@ -80,6 +80,8 @@
   color: #000000;
   cursor: pointer;
   margin-bottom: 16px;
+  border: none;
+  background-color: transparent;
 }
 
 .profile__head-link_red {
@@ -91,6 +93,16 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
+.profile__head-link_disabled:hover {
+  opacity: 0.2;
+  cursor: auto;
+  }
+
+  .profile__head-link_disabled {
+    opacity: 0.2;
+    cursor: auto;
+  }
 
 .profile__head-text {
   font-weight: 400;

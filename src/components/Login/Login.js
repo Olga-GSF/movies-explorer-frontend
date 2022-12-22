@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import * as auth from '../../utils/auth';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import InfoTooltip from "../InfoToolTip/InfoToolTip";
 
 function Login(props) {
   const [password, setPassword] = useState('');
@@ -13,6 +14,8 @@ function Login(props) {
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const history = useHistory();
   const { setLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
+  const [status, setStatus] = useState(false);
 
 
   function handlePasswordChange(evt) {
@@ -48,6 +51,7 @@ function Login(props) {
       .then(data => {
         console.log(data);
         if (data.token) {
+          setStatus(true);
           localStorage.setItem('jwt', data.token);
           setCurrentUser(email)
           setLoggedIn(true);
@@ -55,7 +59,8 @@ function Login(props) {
         }
       })
       .catch((err) => {
-        // setInfoTooltipOpen(true)//открываем попап InfoTooltip
+        setStatus(false)
+        setInfoTooltipOpen(true) //открываем попап InfoTooltip
         console.log(err);
       })
   }
@@ -72,10 +77,11 @@ function Login(props) {
 
           <input className={isEmailError ? 'login__input login__input-error' : 'login__input'} type="email" name="email" id="email" placeholder="Email" onChange={handleEmailChange} value={email || ''} onBlur={handleEmailError} required
           />
+          {isEmailError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
           <input className={isPassError ? 'login__input login__input-error' : 'login__input'} type="password" name="password" id="password" placeholder="Пароль" onChange={handlePasswordChange} onBlur={handlePasswordError} value={password || ''} minLength="5" maxLength="12" required
           />
-          {isPassError || isEmailError ? <p className="login__error">Что-то пошло не так...</p> : ''}
+          {isPassError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
           <button className={!isEmailError && !isPassError && password !== '' && email !== '' ? 'login__button' : "login__button login__button_disabled"} type="submit"
             disabled={!isEmailError && !isPassError ? false : true}>Войти</button>
@@ -85,6 +91,7 @@ function Login(props) {
             </p>
           </div>
         </form>
+        <InfoTooltip isOpen={isInfoTooltipOpen} status={status} onClose={setInfoTooltipOpen} />
       </section>
     </>
   )

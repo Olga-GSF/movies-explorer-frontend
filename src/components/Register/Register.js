@@ -88,13 +88,15 @@ function Register(props) {
 
         <input className={isNameError ? 'reg__input reg__input-error' : 'reg__input'} type="name" name="name" id="name"
           placeholder="Имя" onChange={handleNameChange} onBlur={handleNameError} value={name || ''} minLength="2" maxLength="20" required />
+        {isNameError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
         <input className={isEmailError ? 'reg__input reg__input-error' : 'reg__input'} type="email" name="email" id="email" placeholder="Email" onChange={handleEmailChange} value={email || ''} onBlur={handleEmailError} required
         />
+        {isEmailError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
         <input className={isPassError ? 'reg__input reg__input-error' : 'reg__input'} type="password" name="password" id="password" placeholder="Пароль" onChange={handlePasswordChange} onBlur={handlePasswordError} value={password || ''} minLength="5" maxLength="12" required
         />
-        {isPassError || isEmailError ? <p className="reg__error">Что-то пошло не так...</p> : ''}
+        {isPassError ? <p className="reg__error">Что-то пошло не так...</p> : ''}
 
         <button className={!isEmailError && !isPassError && password !== '' && email !== '' && name !== '' ? 'reg__button' : "reg__button reg__button_disabled"} type="submit"
           disabled={!isEmailError && !isPassError ? false : true}>Зарегистрироваться</button>

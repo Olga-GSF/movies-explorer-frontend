@@ -1,18 +1,29 @@
 import React, { useState } from "react";
+// import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 
-function MoviesCard() {
+function MoviesCard({ nameRU, image, trailerLink, duration }) {
   const [isSaved, setIsSaved] = useState(false);
+  // const currentUser = React.useContext(CurrentUserContext)
+
+  function getTimeFromMins(mins) {
+    let hours = Math.trunc(mins / 60);
+    let minutes = mins % 60;
+    return hours + 'ч ' + minutes + 'м';
+  };
 
   return (
     <li className="movie__card">
       <div className="movie__title-wrap">
         <div className="movie__title-container">
-          <h2 className="movie__title">33 слова о дизайне</h2>
-          <p className="movie__duration">1ч 47м</p>
+          <h2 className="movie__title">{nameRU}</h2>
+          <p className="movie__duration">{getTimeFromMins(duration)}</p>
         </div>
         <button onClick={() => setIsSaved(!isSaved)} type="button" aria-label="save" className={isSaved ? "movie__button-save movie__button-save_active" : "movie__button-save"}></button>
+
       </div>
-      <img src="https://images.unsplash.com/photo-1561728130-afd430af0493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80#" alt="фильм" className="movie__image" />
+      <a className="movie__trailer-link" href={trailerLink}>
+        <img src={'https://api.nomoreparties.co' + image.url} alt="фильм" className="movie__image" />
+      </a>
     </li>
   )
 }

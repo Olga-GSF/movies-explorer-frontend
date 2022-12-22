@@ -22,7 +22,7 @@ class Api {
   }
 
   getMovies() {
-    return fetch(`${this.url}/beatfilm-movies`)
+    return fetch(`${this._url}/beatfilm-movies`)
   }
 
   // getInitialCards() {

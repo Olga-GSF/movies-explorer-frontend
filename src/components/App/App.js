@@ -29,40 +29,10 @@ function App() {
   // const [userEmail, setUserEmail] = useState();
   // const [userName, setUserName] = useState();
   const [currentUser, setCurrentUser] = useState();
+  // const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
+  // const [status, setStatus] = useState(false);
   // const history = useHistory();
 
-  // function handleRegistration(email, password) {
-  //   auth.register(email, password)
-  //     .then((data) => {
-  //       if (data) {
-  //         setStatus(true)
-  //         setInfoTooltipOpen(true)
-  //         history.push('/sign-in');
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setStatus(false)
-  //       setInfoTooltipOpen(true)
-  //       console.log(err);
-  //     })
-  // }
-
-  // function handleLogin(email, password) {
-  //   auth.login(email, password)
-  //     .then((data) => {
-  //       console.log(data);
-  //       if (data.token) {
-  //         localStorage.setItem('jwt', data.token);
-  //         setEmail(email)
-  //         setLoggedIn(true);
-  //         history.push('/');
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       setInfoTooltipOpen(true)//открываем попап InfoTooltip
-  //       console.log(err);
-  //     })
-  // }
 
   return (
     <CurrentUserContext.Provider value={{

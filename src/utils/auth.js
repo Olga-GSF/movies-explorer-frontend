@@ -38,6 +38,21 @@ export const login = (email, password) => {
     .then(getJsonOrError)
 }
 
+export const updateUser = (name, email) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'PATCH',
+    headers: {
+      authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name,
+      email
+    })
+  })
+    .then(getJsonOrError)
+}
+
 export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
@@ -49,24 +64,35 @@ export const checkToken = (token) => {
     .then(getJsonOrError)
 }
 
-// signUp(body) { // email и password required!
-//   return fetch(`${this.url}/signup`, {
-//     method: "POST",
-//     headers: {
-//       "Accept": "application/json",
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(body)
-//   })
-// }
+  // function handleRegistration(email, password) {
+  //   auth.register(email, password)
+  //     .then((data) => {
+  //       if (data) {
+  //         setStatus(true)
+  //         setInfoTooltipOpen(true)
+  //         history.push('/sign-in');
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setStatus(false)
+  //       setInfoTooltipOpen(true)
+  //       console.log(err);
+  //     })
+  // }
 
-// signIn(body) { // email и password required!
-//   return fetch(`${this.url}/signin`, {
-//     method: "POST",
-//     headers: {
-//       "Accept": "application/json",
-//       "Content-Type": "application/json"
-//     },
-//     body: JSON.stringify(body)
-//   })
-// }
+  // function handleLogin(email, password) {
+  //   auth.login(email, password)
+  //     .then((data) => {
+  //       console.log(data);
+  //       if (data.token) {
+  //         localStorage.setItem('jwt', data.token);
+  //         setEmail(email)
+  //         setLoggedIn(true);
+  //         history.push('/');
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       setInfoTooltipOpen(true)//открываем попап InfoTooltip
+  //       console.log(err);
+  //     })
+  // }

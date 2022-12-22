@@ -5,14 +5,14 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import HeaderW from "./HeaderW/HeaderW";
 
 function Header({ activePage }) {
-  const { loggedIn } = useContext(CurrentUserContext);
+  // const { loggedIn } = useContext(CurrentUserContext);
 
   return (
-    <header className={loggedIn && activePage !== 'main' ? "header header_color_white" : "header"}>
+    <header className={localStorage.getItem('jwt') && activePage !== 'main' ? "header header_color_white" : "header"}>
       <Link to='/'>
         <img src={logo} alt="лого" className="header__logo" />
       </Link>
-      {loggedIn ? <HeaderW activePage={activePage} /> :
+      {localStorage.getItem('jwt') ? <HeaderW activePage={activePage} /> :
         <div className="header__button-container">
           <Link to="/sign-up" className="header__button-signup">Регистрация</Link>
           <Link to="/sign-in" className="header__button-signin">Войти</Link>

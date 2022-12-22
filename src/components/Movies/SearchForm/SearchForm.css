@@ -29,6 +29,8 @@
       max-width: 932px;
       max-height: 48px;
       margin-left: 22px;
+      border: none;
+      outline: none;
     }
 
     .search__input-container {
