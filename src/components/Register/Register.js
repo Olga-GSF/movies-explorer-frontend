@@ -15,7 +15,9 @@ function Register(props) {
   const [isEmailError, setIsEmailError] = useState(false);
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const history = useHistory();
-  const { setLoggedIn, setUserEmail } = useContext(CurrentUserContext);
+  const { loggedIn, setLoggedIn, setUserEmail } = useContext(CurrentUserContext);
+  // const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
+  // const [status, setStatus] = useState(false);
 
 
   function handlePasswordChange(evt) {
@@ -66,9 +68,27 @@ function Register(props) {
       .then(data => {
         console.log(data);
         if (data) {
-          setLoggedIn(true)
+          auth.login(email, password)
+            .then(dataAuth => {
+              console.log(data);
+              if (dataAuth.token) {
+                // setStatus(true);
+                localStorage.setItem('jwt', dataAuth.token);
+                // setCurrentUser(email)
+                // setLoggedIn(true);
+                // localStorage.setItem('auth-status', loggedIn)
+                history.push('/movies');
+              }
+            })
+            .catch((err) => {
+              // setStatus(false)
+              // setInfoTooltipOpen(true) //открываем попап InfoTooltip
+              console.log(err);
+            })
+          // setLoggedIn(true)
+          // localStorage.setItem('auth-status', loggedIn)
           // setInfoTooltipOpen(true)
-          history.push('/movies');
+          // history.push('/movies');
         }
       })
       .catch((err) => {

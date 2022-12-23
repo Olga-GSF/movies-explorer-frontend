@@ -21,6 +21,23 @@ class Api {
     }
   }
 
+  changeSaveMovieStatus(id, data) {
+    return fetch(`${this._url}/movies`, {
+      method: 'POST',
+      headers: this._getHeaders(),
+      body: JSON.stringify({ id: id }),
+    })
+      .then(this._getJsonOrError)
+  }
+
+  //   deleteMovie(id) {
+  //   return fetch(`${this._url}/movies/${id}`, {
+  //     method: 'DELETE',
+  //     headers: this._getHeaders(),
+  //   })
+  //     .then(this._getJsonOrError)
+  // }
+
   // getInitialCards() {
   //   return fetch(`${this._url}/cards`, {
   //     headers: this._getHeaders(),

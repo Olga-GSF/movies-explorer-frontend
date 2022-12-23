@@ -7,9 +7,6 @@ function HeaderW({ activePage }) {
   const [isVisible, setIsVisible] = useState(false);
   return (
     <>
-      {/* <button className={isVisible ? "nav__burger-button nav__burger-button_close" : "nav_burger-botton"} onClick={() => setIsVisible(!isVisible)}></button>
-      <div className={isVisible ? "header__button-container nav__burger-popup" : "nav__burger-popup_close"}>
-      </div> */}
       <button className="nav__burger-button" onClick={() => setIsVisible(!isVisible)}></button>
       {isVisible ? <Navigation activePage={activePage} setIsVisible={setIsVisible} /> : ''}
       <div className="header__button-container-white">
@@ -24,3 +21,7 @@ function HeaderW({ activePage }) {
 }
 
 export default HeaderW;
+
+{/* <button className={isVisible ? "nav__burger-button nav__burger-button_close" : "nav_burger-botton"} onClick={() => setIsVisible(!isVisible)}></button>
+      <div className={isVisible ? "header__button-container nav__burger-popup" : "nav__burger-popup_close"}>
+      </div> */}

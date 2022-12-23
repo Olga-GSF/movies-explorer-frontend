@@ -74,13 +74,7 @@ class Api {
   //     .then(this._getJsonOrError)
   // }
 
-  // changeLikeCardStatus(id, isLiked) {
-  //   return fetch(`${this._url}/cards/${id}/likes`, {
-  //     method: isLiked ? 'PUT' : 'DELETE',
-  //     headers: this._getHeaders(),
-  //   })
-  //     .then(this._getJsonOrError)
-  // }
+
 }
 
 const MoviesApi = new Api('https://api.nomoreparties.co')

@@ -3,19 +3,19 @@ import UnionOk from '../../images/UnionOk.svg';
 
 function InfoTooltip({ isOpen, onClose, status }) {
   return (
-    <section className={`popup ${isOpen && 'popup_is-open'}`}>
-      <div className='popup__content_infotooltip'>
-        <button className='button popup__button-close' type='button' onClick={() => onClose(false)} aria-label="close" />
+    <section className={`infotool__popup ${isOpen && 'infotool__popup_is-open'}`}>
+      <div className='infotool__content'>
+        <button className='infotool__button-close' type='button' onClick={() => onClose(false)} aria-label="close" />
         {status ? (<>
-          <img src={`${UnionOk}`} alt="Успешная регистрация" className='popup__image-infotooltip' />
-          <p className='popup__message'>
+          <img src={`${UnionOk}`} alt="Успешная регистрация" className='infotool__image' />
+          <p className='infotool__message'>
             Вы успешно зарегистрировались!
           </p>
         </>)
           :
           (<>
-            <img src={`${UnionNo}`} alt="Что-то пошло не так" className='popup__tooltip-img' />
-            <p className='popup__message'>
+            <img src={`${UnionNo}`} alt="Что-то пошло не так" className='infotool__image' />
+            <p className='infotool__message'>
               Что-то пошло не так! Попробуйте ещё раз.
             </p>
           </>

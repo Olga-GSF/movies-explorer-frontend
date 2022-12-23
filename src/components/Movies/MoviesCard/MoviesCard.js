@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 // import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
+import MainApi from "../../../utils/MainApi";
+import Movies from "../Movies";
 
-function MoviesCard({ nameRU, image, trailerLink, duration }) {
+function MoviesCard({ nameRU, image, trailerLink, duration, id, card }) {
   const [isSaved, setIsSaved] = useState(false);
   // const currentUser = React.useContext(CurrentUserContext)
 
@@ -11,6 +13,11 @@ function MoviesCard({ nameRU, image, trailerLink, duration }) {
     return hours + 'ч ' + minutes + 'м';
   };
 
+  const handleSave = (id) => {
+    MainApi.changeSaveMovieStatus(id)
+      .then(data => console.log(data));
+  }
+  console.log(card);
   return (
     <li className="movie__card">
       <div className="movie__title-wrap">
@@ -18,7 +25,10 @@ function MoviesCard({ nameRU, image, trailerLink, duration }) {
           <h2 className="movie__title">{nameRU}</h2>
           <p className="movie__duration">{getTimeFromMins(duration)}</p>
         </div>
-        <button onClick={() => setIsSaved(!isSaved)} type="button" aria-label="save" className={isSaved ? "movie__button-save movie__button-save_active" : "movie__button-save"}></button>
+        <button onClick={() => {
+          setIsSaved(!isSaved)
+          handleSave(id)
+        }} type="button" aria-label="save" className={isSaved ? "movie__button-save movie__button-save_active" : "movie__button-save"}></button>
 
       </div>
       <a className="movie__trailer-link" href={trailerLink}>

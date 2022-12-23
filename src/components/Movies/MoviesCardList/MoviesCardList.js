@@ -20,10 +20,10 @@ function MoviesCardList() {
         if (data) {
           setIsLoad(true);
           setData(data);
+          console.log(data);
         }
       })
   }, [])
-
 
   useEffect(() => {
     const resizeW = () => changeDeviceSize(window.innerWidth);
@@ -45,7 +45,7 @@ function MoviesCardList() {
     <>
       <section className="movies">
         <ul className="movies__container">
-          {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MoviesCard key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} />) : <Preloader />}
+          {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MoviesCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} />) : <Preloader />}
         </ul>
         {isLoad && data.length > cardsToShow ? <button onClick={() => setCardsToShow(cardsToShow + cardsToAdd)} className="movies__button-more">Еще</button> : ''}
       </section>

@@ -13,7 +13,7 @@ function Login(props) {
   const [isEmailError, setIsEmailError] = useState(false);
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const history = useHistory();
-  const { setLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
+  const { loggedIn, setLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [status, setStatus] = useState(false);
 
@@ -55,6 +55,7 @@ function Login(props) {
           localStorage.setItem('jwt', data.token);
           setCurrentUser(email)
           setLoggedIn(true);
+          localStorage.setItem('auth-status', loggedIn)
           history.push('/movies');
         }
       })
