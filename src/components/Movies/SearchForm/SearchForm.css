@@ -57,9 +57,10 @@
       line-height: 1.5;
       text-align: center;
       color: #FFFFFF;
+      cursor: pointer;
     }
   
-    .search__search__input-button:hover {
+    .search__input-button:hover {
       opacity: 0.5;
     }
   

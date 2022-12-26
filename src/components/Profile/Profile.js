@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
-import * as auth from '../../utils/auth';
+import MainApi from '../../utils/MainApi';
 
 function Profile() {
   const [name, setName] = useState();
@@ -11,7 +11,7 @@ function Profile() {
   const [initialEmail, setInitialEmail] = useState();
 
   useEffect(() => {
-    auth.checkToken(localStorage.getItem('jwt'))
+    MainApi.checkToken(localStorage.getItem('jwt'))
       .then(data => {
         console.log(data)
         if (data) {
@@ -32,7 +32,7 @@ function Profile() {
 
   const handleEdit = (evt) => {
     evt.preventDefault();
-    auth.updateUser(name, email)
+    MainApi.updateUser(name, email)
       .then(data => console.log(data))
   }
   console.log(initialName !== name);

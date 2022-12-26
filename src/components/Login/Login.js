@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 // import { withRouter } from "react-router-dom";
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
-import * as auth from '../../utils/auth';
+import MainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import InfoTooltip from "../InfoToolTip/InfoToolTip";
 
@@ -47,7 +47,7 @@ function Login(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    auth.login(email, password)
+    MainApi.login(email, password)
       .then(data => {
         console.log(data);
         if (data.token) {

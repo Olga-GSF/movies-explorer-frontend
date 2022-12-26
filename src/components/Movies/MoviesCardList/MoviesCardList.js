@@ -1,5 +1,6 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import MoviesApi from "../../../utils/MoviesApi";
+import MainApi from "../../../utils/MainApi";
 import { useEffect, useState } from "react";
 import Preloader from '../Preloader/Preloader';
 
@@ -15,7 +16,7 @@ function MoviesCardList() {
 
   useEffect(() => {
     MoviesApi.getMovies()
-      .then(res => res.json())
+      // .then(res => res.json())
       .then(data => {
         if (data) {
           setIsLoad(true);

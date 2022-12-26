@@ -13,11 +13,18 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card }) {
     return hours + 'ч ' + minutes + 'м';
   };
 
-  const handleSave = (id) => {
-    MainApi.changeSaveMovieStatus(id)
-      .then(data => console.log(data));
+  // const handleSave = (id) => {
+  //   MainApi.changeSaveMovieStatus(id)
+  //     .then(data => console.log(data));
+  // }
+  const handleSavedMovie = (movie) => {
+    console.log(movie)
+    MainApi.saveMovie(movie)
+      .then(data => console.log(data))
   }
+
   console.log(card);
+
   return (
     <li className="movie__card">
       <div className="movie__title-wrap">
@@ -27,7 +34,7 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card }) {
         </div>
         <button onClick={() => {
           setIsSaved(!isSaved)
-          handleSave(id)
+          handleSavedMovie(card)
         }} type="button" aria-label="save" className={isSaved ? "movie__button-save movie__button-save_active" : "movie__button-save"}></button>
 
       </div>

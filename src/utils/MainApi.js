@@ -1,3 +1,6 @@
+const BASE_URL = "https://api.movies-olga.nomoredomains.icu";
+// const BASE_URL = "http://localhost:3002";
+
 class Api {
   constructor(url) {
     this._url = url;
@@ -16,6 +19,7 @@ class Api {
   }
   _getHeaders() {
     return {
+      Accept: 'application/json',
       authorization: `Bearer ${localStorage.getItem('jwt')}`,
       'Content-Type': 'application/json',
     }
@@ -29,6 +33,98 @@ class Api {
     })
       .then(this._getJsonOrError)
   }
+  register = (name, email, password) => {
+    return fetch(`${BASE_URL}/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password
+      })
+    })
+      .then(this._getJsonOrError)
+  }
+
+  login = (email, password) => {
+    return fetch(`${BASE_URL}/signin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    })
+      .then(this._getJsonOrError)
+  }
+
+  updateUser = (name, email) => {
+    return fetch(`${BASE_URL}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('jwt')}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        email
+      })
+    })
+      .then(this._getJsonOrError)
+  }
+
+  checkToken = (token) => {
+    return fetch(`${BASE_URL}/users/me`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      }
+    })
+      .then(this._getJsonOrError)
+  }
+
+  getSavedMovies = () => {
+    return fetch(`${BASE_URL}/movies`, {
+      method: 'GET',
+      headers: this._getHeaders(),
+    })
+      .then(this._getJsonOrError)
+  }
+
+
+
+  saveMovie = (data) => {
+    return fetch(`${BASE_URL}/movies`, {
+      method: 'POST',
+      headers: this._getHeaders(),
+      body: JSON.stringify({
+        country: data.country,
+        created_at: data.created_at,
+        description: data.description,
+        director: data.director,
+        duration: data.duration,
+        movieId: data.id,
+        image: 'https://api.nomoreparties.co/' + data.image.url,
+        nameEN: data.nameEN || data.nameRU,
+        nameRU: data.nameRU || data.nameEN,
+        trailerLink: data.trailerLink,
+        thumbnail: data.thumbnail,
+        updated_at: data.updated_at,
+        year: data.year,
+      }),
+    })
+      .then(this._getJsonOrError)
+  }
+}
+
+// const MainApi = new Api('http://localhost:3002')
+const MainApi = new Api('https://api.movies-olga.nomoredomains.icu')
+export default MainApi
 
   //   deleteMovie(id) {
   //   return fetch(`${this._url}/movies/${id}`, {
@@ -94,7 +190,5 @@ class Api {
   //   })
   //     .then(this._getJsonOrError)
   // }
-}
 
-const MainApi = new Api('http://localhost:3002')
-export default MainApi
+
