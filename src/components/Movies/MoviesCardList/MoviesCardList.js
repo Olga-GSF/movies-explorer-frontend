@@ -1,4 +1,4 @@
-import MoviesCard from "../MoviesCard/MoviesCard";
+import MovieCard from "../../MovieCard/MovieCard";
 import MoviesApi from "../../../utils/MoviesApi";
 import MainApi from "../../../utils/MainApi";
 import { useEffect, useState } from "react";
@@ -46,7 +46,7 @@ function MoviesCardList() {
     <>
       <section className="movies">
         <ul className="movies__container">
-          {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MoviesCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} />) : <Preloader />}
+          {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} />) : <Preloader />}
         </ul>
         {isLoad && data.length > cardsToShow ? <button onClick={() => setCardsToShow(cardsToShow + cardsToAdd)} className="movies__button-more">Еще</button> : ''}
       </section>

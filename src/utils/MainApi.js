@@ -36,9 +36,7 @@ class Api {
   register = (name, email, password) => {
     return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name,
         email,
@@ -51,9 +49,7 @@ class Api {
   login = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: this._getHeaders(),
       body: JSON.stringify({
         email,
         password
@@ -65,10 +61,7 @@ class Api {
   updateUser = (name, email) => {
     return fetch(`${BASE_URL}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: `Bearer ${localStorage.getItem('jwt')}`,
-        'Content-Type': 'application/json',
-      },
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name,
         email
@@ -96,27 +89,31 @@ class Api {
       .then(this._getJsonOrError)
   }
 
-
-
   saveMovie = (data) => {
     return fetch(`${BASE_URL}/movies`, {
       method: 'POST',
       headers: this._getHeaders(),
       body: JSON.stringify({
         country: data.country,
-        created_at: data.created_at,
         description: data.description,
         director: data.director,
-        duration: data.duration,
-        movieId: data.id,
-        image: 'https://api.nomoreparties.co/' + data.image.url,
+        duration: data.duration.toString(),
+        movieId: data.id.toString(),
+        image: 'https://api.nomoreparties.co' + data.image.url,
         nameEN: data.nameEN || data.nameRU,
         nameRU: data.nameRU || data.nameEN,
         trailerLink: data.trailerLink,
-        thumbnail: data.thumbnail,
-        updated_at: data.updated_at,
+        thumbnail: 'https://api.nomoreparties.co' + data.image.formats.thumbnail.url,
         year: data.year,
       }),
+    })
+      .then(this._getJsonOrError)
+  }
+
+  deleteMovie = (id) => {
+    return fetch(`${BASE_URL}/movies/${id}`, {
+      method: 'DELETE',
+      headers: this._getHeaders(),
     })
       .then(this._getJsonOrError)
   }

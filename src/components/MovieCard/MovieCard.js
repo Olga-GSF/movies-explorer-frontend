@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 // import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
-import MainApi from "../../../utils/MainApi";
-import Movies from "../Movies";
+import MainApi from "../../utils/MainApi";
+import { useLocation } from "react-router-dom";
 
 function MoviesCard({ nameRU, image, trailerLink, duration, id, card }) {
   const [isSaved, setIsSaved] = useState(false);
+  const location = useLocation().pathname;
+  const savedMovies = (location === '/saved-movies') ? true : false;
   // const currentUser = React.useContext(CurrentUserContext)
 
   function getTimeFromMins(mins) {
@@ -13,10 +15,6 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card }) {
     return hours + 'ч ' + minutes + 'м';
   };
 
-  // const handleSave = (id) => {
-  //   MainApi.changeSaveMovieStatus(id)
-  //     .then(data => console.log(data));
-  // }
   const handleSavedMovie = (movie) => {
     console.log(movie)
     MainApi.saveMovie(movie)
@@ -37,19 +35,20 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card }) {
           <h2 className="movie__title">{nameRU}</h2>
           <p className="movie__duration">{getTimeFromMins(duration)}</p>
         </div>
-        <button onClick={() => {
+
+        {savedMovies ? <button onClick={() => deleteSaveMovie(card._id)} type="button" aria-label="del" className="movie__button-delete"></button> : <button onClick={() => {
           setIsSaved(!isSaved)
           if (isSaved) {
-            deleteSaveMovie(id)
+            deleteSaveMovie(card._id)
           } else {
             handleSavedMovie(card)
           }
 
-        }} type="button" aria-label="save" className={isSaved ? "movie__button-save movie__button-save_active" : "movie__button-save"}></button>
+        }} type="button" aria-label="save" className={isSaved ? "movie__button-save movie__button-save_active" : "movie__button-save"}></button>}
 
       </div>
       <a className="movie__trailer-link" href={trailerLink}>
-        <img src={'https://api.nomoreparties.co' + image.url} alt="фильм" className="movie__image" />
+        <img src={savedMovies ? image : 'https://api.nomoreparties.co' + image.url} alt="фильм" className="movie__image" />
       </a>
     </li>
   )
