@@ -14,6 +14,23 @@ function MoviesCardList() {
   // const TABLET_WIDTH = 1199;
   // const MOBILE_WIDTH = 752;
 
+  const [isLoadSaved, setIsLoadSaved] = useState(false)
+  const [dataSaved, setDataSaved] = useState([])
+  const [isSaved, setIsSaved] = useState(false);
+  // const [deleteRerender, setDeleteRerender] = useState(0)
+
+  // const [savedMoviesArr, setSavedMoviesArr] = useState(localStorage.getItem('savedMoviesArr'))
+
+  useEffect(() => {
+    MainApi.getSavedMovies()
+      .then(data => {
+        setDataSaved(data.data)
+        // localStorage.setItem('savedMoviesArr', data.data)
+        console.log(data)
+        setIsLoadSaved(true)
+      })
+  }, [])
+
   useEffect(() => {
     MoviesApi.getMovies()
       // .then(res => res.json())
@@ -21,7 +38,6 @@ function MoviesCardList() {
         if (data) {
           setIsLoad(true);
           setData(data);
-          console.log(data);
         }
       })
   }, [])
@@ -46,7 +62,14 @@ function MoviesCardList() {
     <>
       <section className="movies">
         <ul className="movies__container">
-          {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} />) : <Preloader />}
+          {isLoadSaved && dataSaved.map((el) => {
+            isLoad ? data.slice(0, cardsToShow).map((card, index) => {
+              // el._id === card.id && setIsSaved(true)
+              // console.log(el._id, card.id)
+              return (<MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} isSaved={isSaved} setIsSaved={setIsSaved} />)
+            }) : <Preloader />
+          })}
+          {/* {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} />) : <Preloader />} */}
         </ul>
         {isLoad && data.length > cardsToShow ? <button onClick={() => setCardsToShow(cardsToShow + cardsToAdd)} className="movies__button-more">Еще</button> : ''}
       </section>

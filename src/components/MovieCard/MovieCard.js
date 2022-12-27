@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import MainApi from "../../utils/MainApi";
 import { useLocation } from "react-router-dom";
 
-function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRerender, setDeleteRerender }) {
-  const [isSaved, setIsSaved] = useState(false);
+function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRerender, setDeleteRerender, isSaved, setIsSaved }) {
+  // const [isSaved, setIsSaved] = useState(false);
   const location = useLocation().pathname;
   const savedMovies = (location === '/saved-movies') ? true : false;
   // const currentUser = React.useContext(CurrentUserContext)
@@ -31,8 +31,6 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
     MainApi.deleteMovie(id)
       .then(data => { setDeleteRerender(deleteRerender + 1) })
   }
-
-  console.log(card);
 
   return (
     <li className="movie__card">
