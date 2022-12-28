@@ -10,26 +10,17 @@ function MoviesCardList() {
   const [cardsToShow, setCardsToShow] = useState(12);
   const [cardsToAdd, setCardsToAdd] = useState(2);
   const [deviceSize, changeDeviceSize] = useState(window.innerWidth);
+  const [isLoadSaved, setIsLoadSaved] = useState(false);
+  const [dataSaved, setDataSaved] = useState([]);
+  let cardId;
+  // const [cardId, setCardId] = useState();
   // const DESKTOP_WIDTH = 1280;
   // const TABLET_WIDTH = 1199;
   // const MOBILE_WIDTH = 752;
 
-  const [isLoadSaved, setIsLoadSaved] = useState(false)
-  const [dataSaved, setDataSaved] = useState([])
-  const [isSaved, setIsSaved] = useState(false);
+
   // const [deleteRerender, setDeleteRerender] = useState(0)
-
   // const [savedMoviesArr, setSavedMoviesArr] = useState(localStorage.getItem('savedMoviesArr'))
-
-  useEffect(() => {
-    MainApi.getSavedMovies()
-      .then(data => {
-        setDataSaved(data.data)
-        // localStorage.setItem('savedMoviesArr', data.data)
-        console.log(data)
-        setIsLoadSaved(true)
-      })
-  }, [])
 
   useEffect(() => {
     MoviesApi.getMovies()
@@ -41,6 +32,33 @@ function MoviesCardList() {
         }
       })
   }, [])
+
+  useEffect(() => {
+    MainApi.getSavedMovies()
+      .then(data => {
+        setDataSaved(data.data)
+        // localStorage.setItem('savedMoviesArr', data.data)
+        console.log(data)
+        setIsLoadSaved(true)
+      })
+  }, [])
+
+  const checkIsSaved = (savedMovies, movie) => {
+
+    return savedMovies.find((item) => {
+      return item.movieId === movie.id
+    });
+  }
+
+  const findMovieId = (savedMovies, movie) => {
+    return savedMovies.map((item) => {
+
+      if (item.movieId === movie.id) {
+        console.log(item._id)
+        return item._id;
+      }
+    });
+  }
 
   useEffect(() => {
     const resizeW = () => changeDeviceSize(window.innerWidth);
@@ -62,14 +80,7 @@ function MoviesCardList() {
     <>
       <section className="movies">
         <ul className="movies__container">
-          {isLoadSaved && dataSaved.map((el) => {
-            isLoad ? data.slice(0, cardsToShow).map((card, index) => {
-              // el._id === card.id && setIsSaved(true)
-              // console.log(el._id, card.id)
-              return (<MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} isSaved={isSaved} setIsSaved={setIsSaved} />)
-            }) : <Preloader />
-          })}
-          {/* {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} />) : <Preloader />} */}
+          {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} isSavedStatus={checkIsSaved(dataSaved, card)} cardDeleteId={findMovieId(dataSaved, card)} />) : <Preloader />}
         </ul>
         {isLoad && data.length > cardsToShow ? <button onClick={() => setCardsToShow(cardsToShow + cardsToAdd)} className="movies__button-more">Еще</button> : ''}
       </section>

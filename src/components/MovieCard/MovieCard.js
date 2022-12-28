@@ -3,11 +3,15 @@ import React, { useState } from "react";
 import MainApi from "../../utils/MainApi";
 import { useLocation } from "react-router-dom";
 
-function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRerender, setDeleteRerender, isSaved, setIsSaved }) {
-  // const [isSaved, setIsSaved] = useState(false);
+function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRerender, setDeleteRerender, isSavedStatus, cardDeleteId }) {
+  const [isSaved, setIsSaved] = useState(isSavedStatus);
   const location = useLocation().pathname;
   const savedMovies = (location === '/saved-movies') ? true : false;
   // const currentUser = React.useContext(CurrentUserContext)
+
+  console.log(cardDeleteId)
+
+  // console.log(isSavedStatus)
 
   function getTimeFromMins(mins) {
     let hours = Math.trunc(mins / 60);
@@ -43,7 +47,7 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
         {savedMovies ? <button onClick={() => deleteSaveMovie(card._id)} type="button" aria-label="del" className="movie__button-delete"></button> : <button onClick={() => {
           setIsSaved(!isSaved)
           if (isSaved) {
-            deleteSaveMovie(card._id)
+            deleteSaveMovie(card.id)
           } else {
             handleSavedMovie(card)
           }
