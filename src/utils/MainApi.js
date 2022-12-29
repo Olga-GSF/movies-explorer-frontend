@@ -25,14 +25,6 @@ class Api {
     }
   }
 
-  changeSaveMovieStatus(id, data) {
-    return fetch(`${this._url}/movies`, {
-      method: 'POST',
-      headers: this._getHeaders(),
-      body: JSON.stringify({ id: id }),
-    })
-      .then(this._getJsonOrError)
-  }
   register = (name, email, password) => {
     return fetch(`${BASE_URL}/signup`, {
       method: 'POST',
@@ -77,6 +69,15 @@ class Api {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`,
       }
+    })
+      .then(this._getJsonOrError)
+  }
+
+  changeSaveMovieStatus(id, data) {
+    return fetch(`${this._url}/movies`, {
+      method: 'POST',
+      headers: this._getHeaders(),
+      body: JSON.stringify({ id: id }),
     })
       .then(this._getJsonOrError)
   }

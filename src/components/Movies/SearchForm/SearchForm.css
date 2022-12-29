@@ -27,10 +27,11 @@
     .search__input {
       border-style: none;
       max-width: 932px;
-      max-height: 48px;
+      min-height: 48px;
       margin-left: 22px;
       border: none;
       outline: none;
+      background-color: transparent;
     }
 
     .search__input-container {

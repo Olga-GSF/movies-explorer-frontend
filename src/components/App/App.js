@@ -11,7 +11,7 @@ import Footer from '../Footer/Footer';
 import InfoTooltip from '../InfoToolTip/InfoToolTip';
 
 import { useState, useEffect } from 'react';
-// import ProtectedRoute from '../../utils/ProtectedRoute';
+import ProtectedRoute from '../../utils/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 // import { Switch, Route, useHistory } from 'react-router-dom';
 import { Switch, Route } from 'react-router-dom';
@@ -31,6 +31,10 @@ function App() {
     setInfoTooltipOpen(false);
   };
 
+  function parse(type) {
+    return typeof type == 'string' ? JSON.parse(type) : type;
+  }
+
   return (
     <CurrentUserContext.Provider value={{
       loggedIn: loggedIn,
@@ -48,13 +52,11 @@ function App() {
               <Main />
             </Route>
 
-            <Route path="/movies">
-              <Movies />
-            </Route>
+            <ProtectedRoute path="/movies" render={() => <Movies />} authorizationStatus={parse(localStorage.getItem('auth-status'))}>
+            </ProtectedRoute>
 
-            <Route path="/saved-movies">
-              <SavedMovies />
-            </Route>
+            <ProtectedRoute path="/saved-movies" render={() => <SavedMovies />} authorizationStatus={parse(localStorage.getItem('auth-status'))}>
+            </ProtectedRoute>
 
             <Route path="/sign-in">
               <Login />
@@ -64,11 +66,10 @@ function App() {
               <Register />
             </Route>
 
-            <Route path="/profile">
-              <Profile />
-            </Route>
+            <ProtectedRoute path="/profile" render={() => <Profile />} authorizationStatus={parse(localStorage.getItem('auth-status'))}>
+            </ProtectedRoute>
 
-            <Route path="/notfound">
+            <Route>
               <NotFound />
             </Route>
 

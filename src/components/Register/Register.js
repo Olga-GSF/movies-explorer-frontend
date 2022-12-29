@@ -4,6 +4,7 @@ import logo from '../../images/logo.svg';
 import './Register.css';
 import MainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import InfoTooltip from "../InfoToolTip/InfoToolTip";
 
 function Register(props) {
   const [password, setPassword] = useState('');
@@ -15,8 +16,8 @@ function Register(props) {
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const history = useHistory();
   const { loggedIn, setLoggedIn, setUserEmail } = useContext(CurrentUserContext);
-  // const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
-  // const [status, setStatus] = useState(false);
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
+  const [status, setStatus] = useState(false);
 
 
   function handlePasswordChange(evt) {
@@ -71,12 +72,16 @@ function Register(props) {
             .then(dataAuth => {
               console.log(data);
               if (dataAuth.token) {
-                // setStatus(true);
+                setStatus(true);
                 localStorage.setItem('jwt', dataAuth.token);
+                localStorage.setItem('auth-status', true)
                 // setCurrentUser(email)
-                // setLoggedIn(true);
+                setLoggedIn(true);
                 // localStorage.setItem('auth-status', loggedIn)
-                history.push('/movies');
+                setInfoTooltipOpen(true)
+                setTimeout(() => {
+                  history.push('/movies');
+                }, 2000)
               }
             })
             .catch((err) => {
@@ -126,7 +131,7 @@ function Register(props) {
           </p>
         </div>
       </form>
-
+      <InfoTooltip isOpen={isInfoTooltipOpen} status={status} onClose={setInfoTooltipOpen} />
     </section>
   )
 }

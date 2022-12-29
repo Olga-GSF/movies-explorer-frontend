@@ -4,9 +4,8 @@ import MainApi from "../../../utils/MainApi";
 import { useEffect, useState } from "react";
 import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList() {
-  const [isLoad, setIsLoad] = useState(false);
-  const [data, setData] = useState([]);
+function MoviesCardList({ data, isLoad, searchedMoviesList }) {
+
   const [cardsToShow, setCardsToShow] = useState(12);
   const [cardsToAdd, setCardsToAdd] = useState(2);
   const [deviceSize, changeDeviceSize] = useState(window.innerWidth);
@@ -22,16 +21,7 @@ function MoviesCardList() {
   // const [deleteRerender, setDeleteRerender] = useState(0)
   // const [savedMoviesArr, setSavedMoviesArr] = useState(localStorage.getItem('savedMoviesArr'))
 
-  useEffect(() => {
-    MoviesApi.getMovies()
-      // .then(res => res.json())
-      .then(data => {
-        if (data) {
-          setIsLoad(true);
-          setData(data);
-        }
-      })
-  }, [])
+
 
   useEffect(() => {
     MainApi.getSavedMovies()
@@ -50,15 +40,15 @@ function MoviesCardList() {
     });
   }
 
-  const findMovieId = (savedMovies, movie) => {
-    return savedMovies.map((item) => {
+  // const findMovieId = (savedMovies, movie) => {
+  //   return savedMovies.map((item) => {
 
-      if (item.movieId === movie.id) {
-        console.log(item._id)
-        return item._id;
-      }
-    });
-  }
+  //     if (item.movieId === movie.id) {
+  //       console.log(item._id)
+  //       return item._id;
+  //     }
+  //   });
+  // }
 
   useEffect(() => {
     const resizeW = () => changeDeviceSize(window.innerWidth);
@@ -76,16 +66,20 @@ function MoviesCardList() {
     return () => window.removeEventListener("resize", resizeW);
   }, [deviceSize]);
 
+  console.log(JSON.parse(searchedMoviesList))
+
   return (
     <>
       <section className="movies">
         <ul className="movies__container">
-          {isLoad ? data.slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} isSavedStatus={checkIsSaved(dataSaved, card)} cardDeleteId={findMovieId(dataSaved, card)} />) : <Preloader />}
+          {isLoad ? JSON.parse(searchedMoviesList).slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} isSavedStatus={checkIsSaved(dataSaved, card)} />) : <Preloader />}
         </ul>
-        {isLoad && data.length > cardsToShow ? <button onClick={() => setCardsToShow(cardsToShow + cardsToAdd)} className="movies__button-more">Еще</button> : ''}
+        {isLoad && JSON.parse(searchedMoviesList).length > cardsToShow ? <button onClick={() => setCardsToShow(cardsToShow + cardsToAdd)} className="movies__button-more">Еще</button> : ''}
       </section>
     </>
   )
 }
 
 export default MoviesCardList;
+
+// cardDeleteId={findMovieId(dataSaved, card)}

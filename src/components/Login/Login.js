@@ -55,7 +55,7 @@ function Login(props) {
           localStorage.setItem('jwt', data.token);
           setCurrentUser(email)
           setLoggedIn(true);
-          localStorage.setItem('auth-status', loggedIn)
+          localStorage.setItem('auth-status', true)
           history.push('/movies');
         }
       })

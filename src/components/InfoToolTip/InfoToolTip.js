@@ -9,7 +9,7 @@ function InfoTooltip({ isOpen, onClose, status }) {
         {status ? (<>
           <img src={`${UnionOk}`} alt="Успешная регистрация" className='infotool__image' />
           <p className='infotool__message'>
-            Вы успешно зарегистрировались!
+            Данные успешно сохранены!
           </p>
         </>)
           :

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import MainApi from '../../utils/MainApi';
+import InfoTooltip from "../InfoToolTip/InfoToolTip";
 
 function Profile() {
   const [name, setName] = useState();
@@ -9,6 +10,8 @@ function Profile() {
   const history = useHistory();
   const [initialName, setInitialName] = useState();
   const [initialEmail, setInitialEmail] = useState();
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
+  const [status, setStatus] = useState(false);
 
   useEffect(() => {
     MainApi.checkToken(localStorage.getItem('jwt'))
@@ -27,13 +30,23 @@ function Profile() {
   const logOut = (evt) => {
     evt.preventDefault();
     localStorage.removeItem('jwt');
+    localStorage.setItem('auth-status', false)
     history.push('/');
   }
 
   const handleEdit = (evt) => {
     evt.preventDefault();
     MainApi.updateUser(name, email)
-      .then(data => console.log(data))
+      .then(data => {
+        setStatus(true)
+        console.log(data)
+        setInfoTooltipOpen(true)
+      })
+      .catch((err) => {
+        setStatus(false)
+        setInfoTooltipOpen(true) //открываем попап InfoTooltip
+        console.log(err);
+      })
   }
   console.log(initialName !== name);
   return (
@@ -57,6 +70,7 @@ function Profile() {
             <button type='button' onClick={logOut} className="profile__head-link profile__head-link_red">Выйти из аккаунта</button>
           </div>
         </form>
+        <InfoTooltip isOpen={isInfoTooltipOpen} status={status} onClose={setInfoTooltipOpen} />
       </section>
     </>
   )
