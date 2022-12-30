@@ -1,9 +1,21 @@
 import UnionNo from '../../images/UnionNo.svg';
 import UnionOk from '../../images/UnionOk.svg';
+import { useEffect } from 'react';
 
 function InfoTooltip({ isOpen, onClose, status }) {
+
+  useEffect(() => {
+    const closeByEscape = (evt) => {
+      if (evt.key === 'Escape') {
+        onClose(false);
+      }
+    }
+    document.addEventListener('keydown', closeByEscape)
+
+    return () => document.removeEventListener('keydown', closeByEscape)
+  }, [])
   return (
-    <section className={`infotool__popup ${isOpen && 'infotool__popup_is-open'}`}>
+    <section onClick={() => onClose(false)} className={`infotool__popup ${isOpen && 'infotool__popup_is-open'}`}>
       <div className='infotool__content'>
         <button className='infotool__button-close' type='button' onClick={() => onClose(false)} aria-label="close" />
         {status ? (<>

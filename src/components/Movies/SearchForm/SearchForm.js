@@ -1,75 +1,80 @@
 import linegray from '../../../images/stroke-portfolio.svg';
 import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
 import { useState, useEffect } from 'react';
-
+import InfoTooltipError from '../../InfoToolTipError/InfoToolTipError';
 
 
 function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList }) {
 
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
+  const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
+
+  let isActiveFilter = false;
+
   const [active, setActive] = useState(false);
 
   useEffect(() => {
     console.log(active)
-  }, [active, setActive])
-
-  console.log(data)
+  }, [active])
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (searchText === '') {
       setError('Нужно ввести ключевое слово')
+      setInfoTooltipOpen(true)
     }
     const searchedMovies = isLoad && data.filter(movie => {
-      console.log(movie)
       return movie.nameRU.toLowerCase().includes(searchText.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchText.toLowerCase())
     })
-    console.log(searchedMovies)
-    const storageSearchMovies = JSON.parse(localStorage.getItem('search-movies')) || [];
+    searchedMovies.length === 0 && setInfoTooltipOpen(true)
+    if (searchedMovies.length === 0) {
+      setError('Ничего не найдено')
+      setInfoTooltipOpen(true)
+    }
 
-    console.log(storageSearchMovies)
+    const storageSearchMovies = JSON.parse(localStorage.getItem('search-movies')) || [];
     const allSearchMovies = searchedMovies.concat(storageSearchMovies)
 
-    console.log(allSearchMovies)
-
     localStorage.setItem('search-movies', JSON.stringify(allSearchMovies))
-
     setSearchedMoviesList(allSearchMovies)
 
   }
 
-  const handleFilter = (active) => {
+  const handleFilter = () => {
     const initialMovies = JSON.parse(localStorage.getItem('search-movies'))
-    console.log(active)
+
     setActive(!active)
+    isActiveFilter = !active;
 
     const filteredMovies = searchedMoviesList.filter(movie => {
-      console.log(movie.duration)
       return movie.duration <= 40;
     })
-    console.log(filteredMovies)
-    active ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(initialMovies)
+
+    isActiveFilter ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(initialMovies)
   }
 
   return (
     <section className="search">
       <form className="search__form" onSubmit={handleSubmit} >
         <div className="search__input-container">
-          <input onChange={evt => setSearchText(evt.target.value)} value={searchText} className="search__input" type="search" name="name" id="name" placeholder="Фильм" required />
+          <input onChange={evt => setSearchText(evt.target.value)} value={searchText} className="search__input" type="search" name="name" id="name" placeholder="Фильм" />
           <button className="search__input-button" type='submit'>Найти</button>
         </div>
         <div className='search__filter-container'>
           <p className="search__filter-short">Короткометражки</p>
-          <FilterCheckbox active={active} setActive={setActive} handleFilter={handleFilter} />
+          <FilterCheckbox active={active} handleFilter={handleFilter} />
         </div>
       </form>
       <img src={linegray} alt="линия" className="line-gray" />
+      <InfoTooltipError errorMessage={error} isOpen={isInfoTooltipOpen} onClose={setInfoTooltipOpen} />
     </section>
   )
 }
 
 export default SearchForm;
+
+// active={active} setActive={setActive}
 
 {/* <section className="search">
 <div className="search__form-wrap">

@@ -31,6 +31,17 @@ function App() {
     setInfoTooltipOpen(false);
   };
 
+  useEffect(() => {
+    const closeByEscape = (evt) => {
+      if (evt.key === 'Escape') {
+        closePopup();
+      }
+    }
+    document.addEventListener('keydown', closeByEscape)
+
+    return () => document.removeEventListener('keydown', closeByEscape)
+  }, [])
+
   function parse(type) {
     return typeof type == 'string' ? JSON.parse(type) : type;
   }
