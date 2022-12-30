@@ -1,13 +1,19 @@
 import linegray from '../../../images/stroke-portfolio.svg';
 import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 
-function SearchForm({ data, isLoad, setSearchedMoviesList }) {
+function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList }) {
 
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    console.log(active)
+  }, [active, setActive])
+
   console.log(data)
 
   const handleSubmit = (evt) => {
@@ -20,12 +26,30 @@ function SearchForm({ data, isLoad, setSearchedMoviesList }) {
       return movie.nameRU.toLowerCase().includes(searchText.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchText.toLowerCase())
     })
     console.log(searchedMovies)
-    const storageSearchMovies = localStorage.getItem('search-movies') || [];
+    const storageSearchMovies = JSON.parse(localStorage.getItem('search-movies')) || [];
+
+    console.log(storageSearchMovies)
     const allSearchMovies = searchedMovies.concat(storageSearchMovies)
+
+    console.log(allSearchMovies)
+
     localStorage.setItem('search-movies', JSON.stringify(allSearchMovies))
 
     setSearchedMoviesList(allSearchMovies)
 
+  }
+
+  const handleFilter = (active) => {
+    const initialMovies = JSON.parse(localStorage.getItem('search-movies'))
+    console.log(active)
+    setActive(!active)
+
+    const filteredMovies = searchedMoviesList.filter(movie => {
+      console.log(movie.duration)
+      return movie.duration <= 40;
+    })
+    console.log(filteredMovies)
+    active ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(initialMovies)
   }
 
   return (
@@ -37,7 +61,7 @@ function SearchForm({ data, isLoad, setSearchedMoviesList }) {
         </div>
         <div className='search__filter-container'>
           <p className="search__filter-short">Короткометражки</p>
-          <FilterCheckbox />
+          <FilterCheckbox active={active} setActive={setActive} handleFilter={handleFilter} />
         </div>
       </form>
       <img src={linegray} alt="линия" className="line-gray" />

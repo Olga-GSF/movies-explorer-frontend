@@ -10,6 +10,7 @@ function Movies() {
   const [isLoad, setIsLoad] = useState(false);
   const [data, setData] = useState([]);
   const storageSearchMovies = JSON.parse(localStorage.getItem('search-movies')) || [];
+  console.log(storageSearchMovies);
 
   // localStorage.setItem('search-movies', [])
   const [searchedMoviesList, setSearchedMoviesList] = useState(storageSearchMovies);
@@ -30,7 +31,7 @@ function Movies() {
   return (
     <>
       <Header activePage='movies' />
-      <SearchForm data={data} isLoad={isLoad} setData={setData} setSearchedMoviesList={setSearchedMoviesList} />
+      <SearchForm data={data} isLoad={isLoad} setData={setData} searchedMoviesList={searchedMoviesList} setSearchedMoviesList={setSearchedMoviesList} />
       <MoviesCardList data={data} isLoad={isLoad} searchedMoviesList={searchedMoviesList} />
       <Footer />
 
