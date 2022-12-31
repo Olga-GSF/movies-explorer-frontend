@@ -18,6 +18,7 @@ npm run dev — запускает сервер с hot-reload
 Как начать Достаточно открыть данный проект и начать! Смотреть и делиться с другими.
 
 Ссылка на GitHub https://github.com/Olga-GSF/movies-explorer-frontend/tree/level-2
+Ссылка на PUll-request: https://github.com/Olga-GSF/movies-explorer-frontend/pull/2
 
 Контакты Olga-GSF - Olga-GSF@example.com
 
