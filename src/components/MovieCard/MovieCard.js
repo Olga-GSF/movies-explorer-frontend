@@ -7,9 +7,12 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
   const [isSaved, setIsSaved] = useState(isSavedStatus);
   const location = useLocation().pathname;
   const savedMovies = (location === '/saved-movies') ? true : false;
+  const movies = (location === '/movies') ? true : false;
   const [isLoadSaved, setIsLoadSaved] = useState(false);
   const [dataSaved, setDataSaved] = useState([]);
   const [delCardId, setDelCardId] = useState();
+  // const [saveMovies, setSaveMovies] = useState();
+  // const [saveId, setSaveId] = useState();
   // const currentUser = React.useContext(CurrentUserContext)
 
 
@@ -53,7 +56,11 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
     // })
     console.log(id)
     MainApi.deleteMovie(id)
-      .then(data => { setDeleteRerender(deleteRerender + 1) })
+      .then(data => {
+        if (!movies) {
+          setDeleteRerender(deleteRerender + 1)
+        }
+      })
   }
 
   return (
@@ -67,7 +74,18 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
         {savedMovies ? <button onClick={() => deleteSaveMovie(card._id)} type="button" aria-label="del" className="movie__button-delete"></button> : <button onClick={() => {
           setIsSaved(!isSaved)
           if (isSaved) {
-            deleteSaveMovie(card.id)
+            if (movies) {
+              MainApi.getSavedMovies()
+                .then(data => {
+                  console.log(data)
+                  data.data.map((movie) => {
+                    console.log(movie.movieId === id)
+                    if (movie.movieId === id) {
+                      deleteSaveMovie(movie._id)
+                    }
+                  })
+                })
+            }
           } else {
             handleSavedMovie(card)
           }

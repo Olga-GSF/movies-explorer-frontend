@@ -72,9 +72,10 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
       <form className="search__form" onSubmit={handleSubmit} >
         <div className="search__input-container">
           <input onChange={evt => setSearchText(evt.target.value)} value={searchText} className="search__input" type="search" name="name" id="name" placeholder="Фильм" />
-          {isError && <span className='search__error'>{error}</span>}
+
           <button className="search__input-button" type='submit'>Найти</button>
         </div>
+        {isError && <span className='search__error'>{error}</span>}
         <div className='search__filter-container'>
           <p className="search__filter-short">Короткометражки</p>
           <FilterCheckbox active={active} handleFilter={handleFilter} />
