@@ -8,6 +8,7 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
 
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
+  const [isError, setIsError] = useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
 
   let isActiveFilter = false;
@@ -18,11 +19,16 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
     console.log(active)
   }, [active])
 
+  // const makeUniq = (arr) => {
+  //   const uniqSet = new Set(arr);
+  //   return [...uniqSet];
+  // }
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (searchText === '') {
       setError('Нужно ввести ключевое слово')
-      setInfoTooltipOpen(true)
+      setIsError(true)
     }
     const searchedMovies = isLoad && data.filter(movie => {
       return movie.nameRU.toLowerCase().includes(searchText.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchText.toLowerCase())
@@ -36,8 +42,15 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
     const storageSearchMovies = JSON.parse(localStorage.getItem('search-movies')) || [];
     const allSearchMovies = searchedMovies.concat(storageSearchMovies)
 
-    localStorage.setItem('search-movies', JSON.stringify(allSearchMovies))
-    setSearchedMoviesList(allSearchMovies)
+    const res = allSearchMovies.reduce((o, i) => {
+      if (!o.find(v => v.id == i.id)) {
+        o.push(i);
+      }
+      return o;
+    }, []);
+
+    localStorage.setItem('search-movies', JSON.stringify(res))
+    setSearchedMoviesList(res)
 
   }
 
@@ -59,13 +72,16 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
       <form className="search__form" onSubmit={handleSubmit} >
         <div className="search__input-container">
           <input onChange={evt => setSearchText(evt.target.value)} value={searchText} className="search__input" type="search" name="name" id="name" placeholder="Фильм" />
+          {isError && <span className='search__error'>{error}</span>}
           <button className="search__input-button" type='submit'>Найти</button>
         </div>
         <div className='search__filter-container'>
           <p className="search__filter-short">Короткометражки</p>
           <FilterCheckbox active={active} handleFilter={handleFilter} />
         </div>
+
       </form>
+
       <img src={linegray} alt="линия" className="line-gray" />
       <InfoTooltipError errorMessage={error} isOpen={isInfoTooltipOpen} onClose={setInfoTooltipOpen} />
     </section>
