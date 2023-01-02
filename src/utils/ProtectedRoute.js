@@ -11,7 +11,7 @@ const ProtectedRoute = ({ render, path, exact, authorizationStatus }) => {
           return (render(routeProps));
         }
         console.log(typeof authorizationStatus);
-        return (<Redirect to='/sign-in' />);
+        return (<Redirect to='/' />);
       }}
     />
   );

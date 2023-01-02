@@ -105,7 +105,9 @@ function Register(props) {
   return (
     <section className="reg">
       <div className='reg__title-container'>
-        <img src={logo} alt="лого" className="header__logo" />
+        <Link to='/'>
+          <img src={logo} alt="лого" className="header__logo" />
+        </Link>
         <h2 className="reg__title">Добро пожаловать!</h2>
       </div>
       <form className="reg__form" onSubmit={handleSubmit}>

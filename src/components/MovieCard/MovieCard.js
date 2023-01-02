@@ -93,7 +93,7 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
         }} type="button" aria-label="save" className={isSaved ? "movie__button-save movie__button-save_active" : "movie__button-save"}></button>}
 
       </div>
-      <a className="movie__trailer-link" href={trailerLink}>
+      <a className="movie__trailer-link" target="_blank" rel="noopener noreferrer" href={trailerLink}>
         <img src={savedMovies ? image : 'https://api.nomoreparties.co' + image.url} alt="фильм" className="movie__image" />
       </a>
     </li>

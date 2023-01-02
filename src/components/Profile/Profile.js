@@ -12,6 +12,7 @@ function Profile() {
   const [initialEmail, setInitialEmail] = useState();
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [status, setStatus] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
 
   useEffect(() => {
     MainApi.checkToken(localStorage.getItem('jwt'))
@@ -30,11 +31,13 @@ function Profile() {
   const logOut = (evt) => {
     evt.preventDefault();
     localStorage.removeItem('jwt');
+    localStorage.removeItem('search-movies');
     localStorage.setItem('auth-status', false)
     history.push('/');
   }
 
   const handleEdit = (evt) => {
+    setButtonDisabled(true)
     evt.preventDefault();
     MainApi.updateUser(name, email)
       .then(data => {
@@ -49,6 +52,13 @@ function Profile() {
       })
   }
   console.log(initialName !== name);
+
+
+  // const savedBut = (evt) => {
+  //   evt.preventDefault();
+  //   evt.currentTarget.disabled = true; // Disable clicked button
+  // }
+
   return (
     <>
       <Header />
@@ -77,3 +87,6 @@ function Profile() {
 }
 
 export default Profile;
+
+// onClick={(evt) => savedBut(evt)}
+// disabled={initialName !== name || initialEmail !== email ? false : true}

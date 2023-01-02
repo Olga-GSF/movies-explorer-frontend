@@ -71,7 +71,9 @@ function Login(props) {
     <>
       <section className="login">
         <div className='login__title-container'>
-          <img src={logo} alt="лого" className="header__logo" />
+          <Link to='/'>
+            <img src={logo} alt="лого" className="header__logo" />
+          </Link>
           <h2 className="login__title">Рады видеть!</h2>
         </div>
         <form className="login__form" onSubmit={handleSubmit}>
