@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 // import { withRouter } from "react-router-dom";
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
@@ -7,8 +7,10 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import InfoTooltip from "../InfoToolTip/InfoToolTip";
 
 function Login(props) {
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  const emailRef = useRef('');
+  const passwordRef = useRef('');
   const [isPassError, setIsPassError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -18,27 +20,16 @@ function Login(props) {
   const [status, setStatus] = useState(false);
 
 
-  function handlePasswordChange(evt) {
-    setPassword(evt.target.value);
-    if (password.length > 5) {
-      setIsPassError(false)
-    }
-  }
-
   function handlePasswordError(evt) {
-    if (password.length > 5) {
+    if (passwordRef.current.value.length > 5) {
       setIsPassError(false)
     } else {
       setIsPassError(true);
     }
   }
 
-  function handleEmailChange(evt) {
-    setEmail(evt.target.value);
-  }
-
   function handleEmailError() {
-    if (!emailReg.test(email.toLowerCase())) {
+    if (!emailReg.test(emailRef.current.value.toLowerCase())) {
       setIsEmailError(true);
     } else {
       setIsEmailError(false);
@@ -47,13 +38,13 @@ function Login(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    MainApi.login(email, password)
+    MainApi.login(emailRef.current.value, passwordRef.current.value)
       .then(data => {
         console.log(data);
         if (data.token) {
           setStatus(true);
           localStorage.setItem('jwt', data.token);
-          setCurrentUser(email)
+          setCurrentUser(emailRef.current.value)
           setLoggedIn(true);
           localStorage.setItem('auth-status', true)
           history.push('/movies');
@@ -78,16 +69,17 @@ function Login(props) {
         </div>
         <form className="login__form" onSubmit={handleSubmit}>
 
-          <input className={isEmailError ? 'login__input login__input-error' : 'login__input'} type="email" name="email" id="email" placeholder="Email" onChange={handleEmailChange} value={email || ''} onBlur={handleEmailError} required
+          <input className={isEmailError ? 'login__input login__input-error' : 'login__input'} type="email" name="email" id="email" placeholder="Email" onChange={() => { handleEmailError() }} ref={emailRef} required
           />
           {isEmailError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
-          <input className={isPassError ? 'login__input login__input-error' : 'login__input'} type="password" name="password" id="password" placeholder="Пароль" onChange={handlePasswordChange} onBlur={handlePasswordError} value={password || ''} minLength="5" maxLength="12" required
+          <input className={isPassError ? 'login__input login__input-error' : 'login__input'} type="password" name="password" id="password" placeholder="Пароль" onChange={() => { handlePasswordError() }} ref={passwordRef} minLength="5" maxLength="12" required
           />
           {isPassError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
-          <button className={!isEmailError && !isPassError && password !== '' && email !== '' ? 'login__button' : "login__button login__button_disabled"} type="submit"
+          <button className={!isEmailError && !isPassError && emailRef.current.value && passwordRef.current.value ? 'login__button' : "login__button login__button_disabled"} type="submit"
             disabled={!isEmailError && !isPassError ? false : true}>Войти</button>
+
           <div className="login__head-title">
             <p className="login__head-text">
               Ещё не зарегистрированы? <Link to="/sign-up" className="login__head-link">Регистрация</Link>

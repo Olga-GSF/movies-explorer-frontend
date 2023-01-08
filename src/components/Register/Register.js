@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import './Register.css';
@@ -7,9 +7,12 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import InfoTooltip from "../InfoToolTip/InfoToolTip";
 
 function Register(props) {
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [name, setName] = useState('');
+  const nameRef = useRef('');
+  const emailRef = useRef('');
+  const passwordRef = useRef('');
   const [isNameError, setIsNameError] = useState(false);
   const [isPassError, setIsPassError] = useState(false);
   const [isEmailError, setIsEmailError] = useState(false);
@@ -19,43 +22,24 @@ function Register(props) {
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [status, setStatus] = useState(false);
 
-
-  function handlePasswordChange(evt) {
-    setPassword(evt.target.value);
-    if (password.length > 5) {
-      setIsPassError(false)
-    }
-  }
-
   function handlePasswordError(evt) {
-    if (password.length > 5) {
+    if (passwordRef.current.value.length > 5) {
       setIsPassError(false)
     } else {
       setIsPassError(true);
     }
   }
 
-  function handleEmailChange(evt) {
-    setEmail(evt.target.value);
-  }
-
   function handleEmailError() {
-    if (!emailReg.test(email.toLowerCase())) {
+    if (!emailReg.test(emailRef.current.value.toLowerCase())) {
       setIsEmailError(true);
     } else {
       setIsEmailError(false);
     }
   }
 
-  function handleNameChange(evt) {
-    setName(evt.target.value);
-    if (name.length > 2) {
-      setIsNameError(false)
-    }
-  }
-
   function handleNameError(evt) {
-    if (name.length > 2) {
+    if (nameRef.current.value.length >= 2) {
       setIsNameError(false)
     } else {
       setIsNameError(true);
@@ -64,11 +48,11 @@ function Register(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    MainApi.register(name, email, password)
+    MainApi.register(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
       .then(data => {
         console.log(data);
         if (data) {
-          MainApi.login(email, password)
+          MainApi.login(emailRef.current.value, passwordRef.current.value)
             .then(dataAuth => {
               console.log(data);
               if (dataAuth.token) {
@@ -77,7 +61,6 @@ function Register(props) {
                 localStorage.setItem('auth-status', true)
                 // setCurrentUser(email)
                 setLoggedIn(true);
-                // localStorage.setItem('auth-status', loggedIn)
                 setInfoTooltipOpen(true)
                 setTimeout(() => {
                   history.push('/movies');
@@ -89,15 +72,11 @@ function Register(props) {
               setInfoTooltipOpen(true) //открываем попап InfoTooltip
               console.log(err);
             })
-          // setLoggedIn(true)
-          // localStorage.setItem('auth-status', loggedIn)
-          // setInfoTooltipOpen(true)
-          // history.push('/movies');
         }
       })
       .catch((err) => {
         setLoggedIn(false)
-        // setInfoTooltipOpen(true)
+        setInfoTooltipOpen(true)
         console.log(err);
       })
   }
@@ -113,18 +92,18 @@ function Register(props) {
       <form className="reg__form" onSubmit={handleSubmit}>
 
         <input className={isNameError ? 'reg__input reg__input-error' : 'reg__input'} type="name" name="name" id="name"
-          placeholder="Имя" onChange={handleNameChange} onBlur={handleNameError} value={name || ''} minLength="2" maxLength="20" required />
+          placeholder="Имя" onChange={() => { handleNameError() }} ref={nameRef} minLength="2" maxLength="20" required />
         {isNameError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
-        <input className={isEmailError ? 'reg__input reg__input-error' : 'reg__input'} type="email" name="email" id="email" placeholder="Email" onChange={handleEmailChange} value={email || ''} onBlur={handleEmailError} required
+        <input className={isEmailError ? 'reg__input reg__input-error' : 'reg__input'} type="email" name="email" id="email" placeholder="Email" onChange={() => { handleEmailError() }} ref={emailRef} required
         />
         {isEmailError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
-        <input className={isPassError ? 'reg__input reg__input-error' : 'reg__input'} type="password" name="password" id="password" placeholder="Пароль" onChange={handlePasswordChange} onBlur={handlePasswordError} value={password || ''} minLength="5" maxLength="12" required
+        <input className={isPassError ? 'reg__input reg__input-error' : 'reg__input'} type="password" name="password" id="password" placeholder="Пароль" onChange={() => { handlePasswordError() }} ref={passwordRef} minLength="5" maxLength="12" required
         />
         {isPassError ? <p className="reg__error">Что-то пошло не так...</p> : ''}
 
-        <button className={!isEmailError && !isPassError && password !== '' && email !== '' && name !== '' ? 'reg__button' : "reg__button reg__button_disabled"} type="submit"
+        <button className={!isNameError && !isEmailError && !isPassError && nameRef.current.value && emailRef.current.value && passwordRef.current.value ? 'reg__button' : "reg__button reg__button_disabled"} type="submit"
           disabled={!isEmailError && !isPassError ? false : true}>Зарегистрироваться</button>
 
         <div className="reg__head-title">

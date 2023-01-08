@@ -43,10 +43,10 @@ function Profile() {
     evt.preventDefault();
     MainApi.updateUser(name, email)
       .then(data => {
-        localStorage.getItem('jwt', data.token)
         setCurrentUser(name, email)
         setStatus(true)
-        console.log(name, email)
+        setInitialName(name)
+        setInitialEmail(email)
         setInfoTooltipOpen(true)
       })
       .catch((err) => {
