@@ -85,8 +85,8 @@ function Register(props) {
               }
             })
             .catch((err) => {
-              // setStatus(false)
-              // setInfoTooltipOpen(true) //открываем попап InfoTooltip
+              setStatus(false)
+              setInfoTooltipOpen(true) //открываем попап InfoTooltip
               console.log(err);
             })
           // setLoggedIn(true)

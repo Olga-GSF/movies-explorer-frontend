@@ -20,7 +20,7 @@ npm run dev — запускает сервер с hot-reload
 Ссылка на GitHub https://github.com/Olga-GSF/movies-explorer-frontend/tree/level-2
 Ссылка на PUll-request: https://github.com/Olga-GSF/movies-explorer-frontend/pull/2
 
-frontend https://dynamic-alpaca-a8d3d6.netlify.app/
+frontend https://movies-explorer-frontend-gk58wfkh5-olga-gsf.vercel.app/
 backend https://api.movies-olga.nomoredomains.icu/ ip 51.250.106.162
 
 Контакты Olga-GSF - Olga-GSF@example.com

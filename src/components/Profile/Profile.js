@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import MainApi from '../../utils/MainApi';
 import InfoTooltip from "../InfoToolTip/InfoToolTip";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile() {
   const [name, setName] = useState();
@@ -13,6 +14,7 @@ function Profile() {
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [status, setStatus] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const { loggedIn, setLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     MainApi.checkToken(localStorage.getItem('jwt'))
@@ -41,8 +43,10 @@ function Profile() {
     evt.preventDefault();
     MainApi.updateUser(name, email)
       .then(data => {
+        localStorage.getItem('jwt', data.token)
+        setCurrentUser(name, email)
         setStatus(true)
-        console.log(data)
+        console.log(name, email)
         setInfoTooltipOpen(true)
       })
       .catch((err) => {
