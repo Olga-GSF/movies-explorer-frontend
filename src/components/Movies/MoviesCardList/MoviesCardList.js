@@ -72,9 +72,13 @@ function MoviesCardList({ data, isLoad, searchedMoviesList }) {
   return (
     <>
       <section className="movies">
-        <ul className="movies__container">
-          {isLoad ? searchedMoviesList.slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} isSavedStatus={checkIsSaved(dataSaved, card)} />) : <Preloader />}
-        </ul>
+        {
+          !isLoad ? <Preloader /> : (
+            <ul className="movies__container">
+              {searchedMoviesList.slice(0, cardsToShow).map((card, index) => <MovieCard card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} isSavedStatus={checkIsSaved(dataSaved, card)} />)}
+            </ul>
+          )
+        }
         {isLoad && searchedMoviesList.length > cardsToShow ? <button onClick={() => setCardsToShow(cardsToShow + cardsToAdd)} className="movies__button-more">Еще</button> : ''}
       </section>
     </>

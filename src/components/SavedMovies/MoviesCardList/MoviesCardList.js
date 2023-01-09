@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Preloader from "../../Movies/Preloader/Preloader";
 import SavedMovies from "../SavedMovies";
 
-function MoviesCardList() {
+function MoviesCardList({ searchedMoviesList }) {
 
   const [isLoad, setIsLoad] = useState(false)
   const [data, setData] = useState([])
@@ -25,9 +25,13 @@ function MoviesCardList() {
   return (
     <>
       <section className="saved-movies">
-        <ul className="movies__container">
-          {isLoad ? data.map((card, index) => <MovieCard deleteRerender={deleteRerender} setDeleteRerender={setDeleteRerender} card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} />) : <Preloader />}
-        </ul>
+        {
+          !isLoad ? <Preloader /> : (
+            <ul className="movies__container">
+              {searchedMoviesList.map((card, index) => <MovieCard deleteRerender={deleteRerender} setDeleteRerender={setDeleteRerender} card={card} key={index} nameRU={card.nameRU} image={card.image} trailerLink={card.trailerLink} duration={card.duration} id={card.id} />)}
+            </ul>
+          )
+        }
         <div className="movies__devider"></div>
       </section>
     </>

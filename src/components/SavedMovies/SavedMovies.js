@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import Header from '../Header/Header';
-import SearchForm from '../Movies/SearchForm/SearchForm';
+import SearchFormSaved from './SearchFormSaved/SearchFormSaved';
 import MoviesCardList from '../SavedMovies/MoviesCardList/MoviesCardList';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Footer from '../Footer/Footer';
@@ -11,8 +11,9 @@ function SavedMovies() {
   const { setLoggedIn } = useContext(CurrentUserContext);
   const [isLoad, setIsLoad] = useState(false);
   const [data, setData] = useState([]);
-  const storageSearchMovies = JSON.parse(localStorage.getItem('search-movies')) || [];
-  const [searchedMoviesList, setSearchedMoviesList] = useState(storageSearchMovies);
+
+  const [searchedMoviesList, setSearchedMoviesList] = useState([]);
+
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [error, setError] = useState('');
 
@@ -24,7 +25,8 @@ function SavedMovies() {
       .then(data => {
         if (data) {
           setIsLoad(true);
-          setData(data);
+          setData(data.data);
+          setSearchedMoviesList(data.data);
         }
       })
       .catch((err) => {
@@ -37,8 +39,8 @@ function SavedMovies() {
   return (
     <>
       <Header activePage='saved-movies' />
-      <SearchForm data={data} isLoad={isLoad} setData={setData} searchedMoviesList={searchedMoviesList} setSearchedMoviesList={setSearchedMoviesList} />
-      <MoviesCardList data={data} isLoad={isLoad} searchedMoviesList={searchedMoviesList} />
+      <SearchFormSaved data={data} isLoad={isLoad} searchedMoviesList={searchedMoviesList} setSearchedMoviesList={setSearchedMoviesList} />
+      <MoviesCardList searchedMoviesList={searchedMoviesList} />
       <Footer />
       <InfoTooltipError errorMessage={error} isOpen={isInfoTooltipOpen} onClose={setInfoTooltipOpen} />
 

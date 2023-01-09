@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import InfoTooltipError from '../../InfoToolTipError/InfoToolTipError';
 
 
-function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList }) {
+function SearchFormSaved({ data, isLoad, setSearchedMoviesList, searchedMoviesList }) {
 
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
@@ -17,24 +17,24 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
 
   useEffect(() => {
     console.log(active);
-
-    const initialMovies = JSON.parse(localStorage.getItem('search-movies'));
-
-    setActive(JSON.parse(localStorage.getItem("filter-status")));
+    if (searchText === '') {
+      setSearchedMoviesList(data);
+    }
+    if (searchText !== '') {
+      setError('')
+      setIsError(false)
+    }
+    setActive(JSON.parse(localStorage.getItem("filter-status-save")));
     isActiveFilter = !active;
 
     const filteredMovies = searchedMoviesList.filter(movie => {
       return movie.duration <= 40;
     })
 
-    JSON.parse(localStorage.getItem("filter-status")) ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(initialMovies)
+    JSON.parse(localStorage.getItem("filter-status-save")) ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(data)
 
-  }, [active])
+  }, [active, searchText])
 
-  // const makeUniq = (arr) => {
-  //   const uniqSet = new Set(arr);
-  //   return [...uniqSet];
-  // }
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -51,24 +51,22 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
       setInfoTooltipOpen(true)
     }
 
-    localStorage.setItem('search-movies', JSON.stringify(searchedMovies))
     setSearchedMoviesList(searchedMovies)
 
   }
 
   const handleFilter = () => {
-    const initialMovies = JSON.parse(localStorage.getItem('search-movies'))
 
     setActive(!active)
     isActiveFilter = !active;
 
-    localStorage.setItem("filter-status", isActiveFilter);
+    localStorage.setItem("filter-status-save", isActiveFilter);
 
     const filteredMovies = searchedMoviesList.filter(movie => {
       return movie.duration <= 40;
     })
 
-    JSON.parse(localStorage.getItem("filter-status")) ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(initialMovies)
+    JSON.parse(localStorage.getItem("filter-status-save")) ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(data)
   }
 
   return (
@@ -93,7 +91,7 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
   )
 }
 
-export default SearchForm;
+export default SearchFormSaved;
 
 // active={active} setActive={setActive}
 
