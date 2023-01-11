@@ -1,0 +1,49 @@
+.saved-movies {
+  max-width: 1280px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding-top: 70px;
+}
+
+.saved__button-delete {
+  width: 8px;
+  height: 8px;
+  background-image: url(../../images/delete-cross.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  background-size: contain;
+  transition: opacity 0.1s ease-out;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .saved-movies {
+    width: 768px;
+    padding: 70px 30px 0;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .saved-movies {
+    width: 720px;
+    padding: 70px 30px 0;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 424px) {
+  .saved-movies {
+    width: 320px;
+    padding: 40px 10px 80px;
+    box-sizing: border-box;
+  }
+}
+
+

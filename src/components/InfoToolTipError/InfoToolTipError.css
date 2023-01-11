@@ -1,0 +1,80 @@
+.infotool-error__popup {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity:0;
+  transition: visibility .5s, opacity .5s ease;
+}
+
+.infotool-error__popup_is-open {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility .5s, opacity .5s;
+  z-index: 2;
+}
+
+.infotool-error__content {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  position: relative;
+  margin: 0;
+  max-width: 430px;
+  width: 100%;
+  margin: auto;
+  padding: 60px 36px;
+  text-align: center;
+}
+
+.infotool-error__button-close {
+  width: 32px;
+  height: 32px;
+  background-image: url(../../images/CloseIcon.svg);
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: -37px;
+  right: -37px;
+  transition: opacity 0.1s ease-out;
+}
+
+.infotool-error__button-close:hover {
+  opacity: 0.6;
+}
+
+.infotool-error__image {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 32px;
+}
+
+@media screen and (max-width: 639px) {
+  .infotool-error__content  {
+    max-width: 280px;
+    max-height: 308px;
+    padding: 50px 18px;
+  }
+
+  .infotool-error__button-close {
+    width: 20px;
+    height: 20px;
+    top: -30px;
+    right: 0;
+  }
+}
+
+.infotool-error__message {
+  
+}

@@ -1,0 +1,42 @@
+@import url(../../vendor/normalize.css);
+
+@import url(../../vendor/fonts/inter.css);
+
+@import url(../Page/Page.css);
+
+@import url(../UniElements/Line.css);
+@import url(../UniElements/Line-gray.css);
+
+
+@import url(../Header/Header.css);
+@import url(../Header/HeaderW/HeaderW.css);
+
+@import url(../NotFoundPage/NotFound.css);
+
+@import url(../Main/Main.css);
+@import url(../Main/Promo/Promo.css);
+@import url(../Main/AboutProject/AboutProject.css);
+@import url(../Main/Techs/Techs.css);
+@import url(../Main/AboutMe/AboutMe.css);
+@import url(../Main/Portfolio/Portfolio.css);
+
+@import url(../Movies/Movies.css);
+@import url(../Movies/MoviesCardList/MoviesCardList.css);
+@import url(../Movies/Preloader/Preloader.css);
+@import url(../Movies/SearchForm/SearchForm.css);
+@import url(../InfoToolTipError/InfoToolTipError.css);
+
+
+@import url(../MovieCard/MovieCard.css);
+
+@import url(../SavedMovies/SavedMovies.css);
+
+@import url(../Footer/Footer.css);
+
+@import url(../Register/Register.css);
+@import url(../Login/Login.css);
+@import url(../Navigation/Navigation.css);
+@import url(../Profile/Profile.css);
+@import url(../FilterCheckbox/FilterCheckbox.css);
+@import url(../Movies/Preloader/Preloader.css);
+@import url(../InfoToolTip/InfoToolTip.css)
