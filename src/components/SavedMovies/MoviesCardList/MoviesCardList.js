@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import Preloader from "../../Movies/Preloader/Preloader";
 import SavedMovies from "../SavedMovies";
 
-function MoviesCardList({ searchedMoviesList }) {
+function MoviesCardList({ searchedMoviesList, setSearchedMoviesList }) {
 
   const [isLoad, setIsLoad] = useState(false)
-  const [data, setData] = useState([])
   const [deleteRerender, setDeleteRerender] = useState(0)
 
   // const [savedMoviesArr, setSavedMoviesArr] = useState(localStorage.getItem('savedMoviesArr'))
@@ -15,7 +14,7 @@ function MoviesCardList({ searchedMoviesList }) {
   useEffect(() => {
     MainApi.getSavedMovies()
       .then(data => {
-        setData(data.data)
+        setSearchedMoviesList(data.data)
         // localStorage.setItem('savedMoviesArr', data.data)
         console.log(data)
         setIsLoad(true)

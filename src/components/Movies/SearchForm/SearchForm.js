@@ -5,8 +5,7 @@ import InfoTooltipError from '../../InfoToolTipError/InfoToolTipError';
 
 
 function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList }) {
-
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(localStorage.getItem("search-text"));
   const [error, setError] = useState('');
   const [isError, setIsError] = useState(false);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
@@ -75,7 +74,10 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
     <section className="search">
       <form className="search__form" onSubmit={handleSubmit} >
         <div className="search__input-container">
-          <input onChange={evt => setSearchText(evt.target.value)} value={searchText} className="search__input" type="search" name="name" id="name" placeholder="Фильм" />
+          <input onChange={evt => {
+            setSearchText(evt.target.value);
+            localStorage.setItem("search-text", evt.target.value);
+          }} value={searchText} className="search__input" type="search" name="name" id="name" placeholder="Фильм" />
 
           <button className="search__input-button" type='submit'>Найти</button>
         </div>

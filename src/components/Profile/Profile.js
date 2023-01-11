@@ -6,35 +6,41 @@ import InfoTooltip from "../InfoToolTip/InfoToolTip";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function Profile() {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
+  const { setUserData, userData } = useContext(CurrentUserContext);
+  const [name, setName] = useState(userData && userData.data.name);
+  const [email, setEmail] = useState(userData && userData.data.email);
   const history = useHistory();
-  const [initialName, setInitialName] = useState();
-  const [initialEmail, setInitialEmail] = useState();
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [status, setStatus] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
-  const { loggedIn, setLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
+
+  const [isLoad, setIsLoad] = useState(false);
 
   useEffect(() => {
-    MainApi.checkToken(localStorage.getItem('jwt'))
-      .then(data => {
-        console.log(data)
-        if (data) {
-          console.log(data);
-          setName(data.data.name);
-          setInitialName(data.data.name)
-          setEmail(data.data.email)
-          setInitialEmail(data.data.email)
-        }
-      })
+    if (userData === undefined) {
+      MainApi.checkToken(localStorage.getItem('jwt'))
+        .then(data => {
+          console.log('request');
+          console.log(data)
+          if (data) {
+            console.log(data);
+            setIsLoad(true);
+            setName(data.data.name);
+            setEmail(data.data.email)
+            setUserData(data);
+          }
+        })
+    }
   }, []);
+
 
   const logOut = (evt) => {
     evt.preventDefault();
     localStorage.removeItem('jwt');
     localStorage.removeItem('search-movies');
     localStorage.setItem('auth-status', false)
+    localStorage.setItem("search-text", '');
+
     history.push('/');
   }
 
@@ -43,10 +49,8 @@ function Profile() {
     evt.preventDefault();
     MainApi.updateUser(name, email)
       .then(data => {
-        setCurrentUser(name, email)
+        setUserData(data)
         setStatus(true)
-        setInitialName(name)
-        setInitialEmail(email)
         setInfoTooltipOpen(true)
       })
       .catch((err) => {
@@ -55,31 +59,26 @@ function Profile() {
         console.log(err);
       })
   }
-  console.log(initialName !== name);
 
-
-  // const savedBut = (evt) => {
-  //   evt.preventDefault();
-  //   evt.currentTarget.disabled = true; // Disable clicked button
-  // }
 
   return (
     <>
       <Header />
       <section className="profile">
         <div className='profile__title-container'>
-          <h2 className="profile__title">Привет, {name}!</h2>
+          <h2 className="profile__title">Привет, {userData && userData.data.name}!</h2>
         </div>
         <form className="profile__form" onSubmit={handleEdit}>
           <label className="profile__input-label">Имя
-            <input className='profile__input' type="text" defaultValue={name} onChange={(evt) => setName(evt.target.value)} id="name"
+            <input className='profile__input' type="text" defaultValue={userData && userData.data.name} onChange={(evt) => setName(evt.target.value)} id="name"
               minLength="2" maxLength="20" />
           </label>
           <label className="profile__input-label">Email
-            <input className='profile__input' type="email" defaultValue={email} onChange={(evt) => setEmail(evt.target.value)} name="email" id="email" />
+            <input className='profile__input' type="email" defaultValue={userData && userData.data.email} onChange={(evt) => setEmail(evt.target.value)} name="email" id="email" />
           </label>
           <div className='profile__link-container'>
-            <button type='submit' className={initialName !== name || initialEmail !== email ? "profile__head-link" : "profile__head-link profile__head-link_disabled"} disabled={initialName !== name || initialEmail !== email ? false : true}>Редактировать</button>
+
+            <button type='submit' className={userData && userData.data.name !== name || userData && userData.data.email !== email ? "profile__head-link" : "profile__head-link profile__head-link_disabled"} disabled={userData && userData.data.name !== name || userData && userData.data.email !== email ? false : true}>Редактировать</button>
 
             <button type='button' onClick={logOut} className="profile__head-link profile__head-link_red">Выйти из аккаунта</button>
           </div>
@@ -91,6 +90,9 @@ function Profile() {
 }
 
 export default Profile;
+
+// onClick={(evt) => savedBut(evt)}
+// disabled={initialName !== name || initialEmail !== email ? false : true}
 
 // onClick={(evt) => savedBut(evt)}
 // disabled={initialName !== name || initialEmail !== email ? false : true}

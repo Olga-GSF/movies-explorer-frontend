@@ -25,6 +25,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState();
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [status, setStatus] = useState(false);
+  const [userData, setUserData] = useState();
   // const history = useHistory();
 
   const closePopup = () => {
@@ -53,7 +54,8 @@ function App() {
       currentUser: currentUser,
       setCurrentUser: setCurrentUser,
       setStatus: setStatus,
-
+      userData: userData,
+      setUserData: setUserData
     }}>
       <div className="App">
         <div className="page">

@@ -40,7 +40,7 @@ function SavedMovies() {
     <>
       <Header activePage='saved-movies' />
       <SearchFormSaved data={data} isLoad={isLoad} searchedMoviesList={searchedMoviesList} setSearchedMoviesList={setSearchedMoviesList} />
-      <MoviesCardList searchedMoviesList={searchedMoviesList} />
+      <MoviesCardList setSearchedMoviesList={setSearchedMoviesList} searchedMoviesList={searchedMoviesList} />
       <Footer />
       <InfoTooltipError errorMessage={error} isOpen={isInfoTooltipOpen} onClose={setInfoTooltipOpen} />
 

@@ -10,13 +10,15 @@ import InfoTooltipError from '../InfoToolTipError/InfoToolTipError';
 function Movies() {
   const [isLoad, setIsLoad] = useState(false);
   const [data, setData] = useState([]);
+
   const storageSearchMovies = JSON.parse(localStorage.getItem('search-movies')) || [];
   const [error, setError] = useState('');
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
 
-  // localStorage.setItem('search-movies', [])
   const [searchedMoviesList, setSearchedMoviesList] = useState(storageSearchMovies);
   const { setLoggedIn } = useContext(CurrentUserContext);
+  const [saveRerender, setSaveRerender] = useState(0);
+
   setLoggedIn(true);
 
   useEffect(() => {
@@ -33,13 +35,13 @@ function Movies() {
         setError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз')
         setInfoTooltipOpen(true)
       })
-  }, [])
+  }, [saveRerender])
 
   return (
     <>
       <Header activePage='movies' />
       <SearchForm data={data} isLoad={isLoad} setData={setData} searchedMoviesList={searchedMoviesList} setSearchedMoviesList={setSearchedMoviesList} />
-      <MoviesCardList data={data} isLoad={isLoad} searchedMoviesList={searchedMoviesList} />
+      <MoviesCardList data={data} isLoad={isLoad} searchedMoviesList={searchedMoviesList} saveRerender={saveRerender} setSaveRerender={setSaveRerender} />
       <Footer />
       <InfoTooltipError errorMessage={error} isOpen={isInfoTooltipOpen} onClose={setInfoTooltipOpen} />
 

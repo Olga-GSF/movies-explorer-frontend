@@ -24,16 +24,17 @@ function SearchFormSaved({ data, isLoad, setSearchedMoviesList, searchedMoviesLi
       setError('')
       setIsError(false)
     }
-    setActive(JSON.parse(localStorage.getItem("filter-status-save")));
-    isActiveFilter = !active;
 
-    const filteredMovies = searchedMoviesList.filter(movie => {
-      return movie.duration <= 40;
-    })
+    // setActive(JSON.parse(localStorage.getItem("filter-status-save")));
+    // isActiveFilter = !active;
 
-    JSON.parse(localStorage.getItem("filter-status-save")) ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(data)
+    // const filteredMovies = searchedMoviesList.filter(movie => {
+    //   return movie.duration <= 40;
+    // })
 
-  }, [active, searchText])
+    // JSON.parse(localStorage.getItem("filter-status-save")) ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(data)
+
+  }, [searchText])
 
 
   const handleSubmit = (evt) => {
@@ -66,6 +67,8 @@ function SearchFormSaved({ data, isLoad, setSearchedMoviesList, searchedMoviesLi
       return movie.duration <= 40;
     })
 
+    console.log(filteredMovies);
+
     JSON.parse(localStorage.getItem("filter-status-save")) ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(data)
   }
 
@@ -94,17 +97,3 @@ function SearchFormSaved({ data, isLoad, setSearchedMoviesList, searchedMoviesLi
 export default SearchFormSaved;
 
 // active={active} setActive={setActive}
-
-{/* <section className="search">
-<div className="search__form-wrap">
-  <form className="search__form">
-    <div className="search__input-container">
-      <input className="search__input" type="name" name="name" id="name" placeholder="Фильм" required />
-      <button className="search__button">Найти</button>
-    </div>
-    <p className="search__filter-short">Короткометражки</p>
-    <FilterCheckbox />
-  </form>
-  <img src={linegray} alt="линия" className="line-gray" />
-</div>
-</section> */}

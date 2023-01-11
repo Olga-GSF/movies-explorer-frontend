@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 // import { withRouter } from "react-router-dom";
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
@@ -15,10 +15,16 @@ function Login(props) {
   const [isEmailError, setIsEmailError] = useState(false);
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const history = useHistory();
-  const { loggedIn, setLoggedIn, setCurrentUser } = useContext(CurrentUserContext);
+  const { loggedIn, setLoggedIn, setCurrentUser, setUserData } = useContext(CurrentUserContext);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [status, setStatus] = useState(false);
+  const [isFormSend, setFormSend] = useState(false);
 
+  useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      history.push('/');
+    }
+  }, [])
 
   function handlePasswordError(evt) {
     if (passwordRef.current.value.length > 5) {
@@ -38,16 +44,28 @@ function Login(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    console.log(emailRef.current.value, passwordRef.current.value);
+    setFormSend(true);
     MainApi.login(emailRef.current.value, passwordRef.current.value)
       .then(data => {
         console.log(data);
-        if (data.token) {
+        if (data) {
           setStatus(true);
           localStorage.setItem('jwt', data.token);
           setCurrentUser(emailRef.current.value)
           setLoggedIn(true);
           localStorage.setItem('auth-status', true)
+          localStorage.setItem('search-movies', JSON.stringify([]));
           history.push('/movies');
+
+          MainApi.checkToken(localStorage.getItem('jwt'))
+            .then(data => {
+              console.log(data)
+              if (data) {
+                setUserData(data);
+              }
+            })
+
         }
       })
       .catch((err) => {
@@ -77,8 +95,9 @@ function Login(props) {
           />
           {isPassError ? <p className="login__error">Что-то пошло не так...</p> : ''}
 
-          <button className={!isEmailError && !isPassError && emailRef.current.value && passwordRef.current.value ? 'login__button' : "login__button login__button_disabled"} type="submit"
-            disabled={!isEmailError && !isPassError ? false : true}>Войти</button>
+          <button className={!isEmailError && !isPassError && emailRef.current.value && passwordRef.current.value && !isFormSend ? 'login__button' : "login__button login__button_disabled"} type="submit"
+            disabled={!isEmailError && !isPassError && !isFormSend ? false : true}>Войти</button>
+
 
           <div className="login__head-title">
             <p className="login__head-text">
@@ -93,4 +112,3 @@ function Login(props) {
 }
 
 export default Login;
-// export default withRouter(Login);

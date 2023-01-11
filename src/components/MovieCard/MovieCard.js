@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import MainApi from "../../utils/MainApi";
 import { useLocation } from "react-router-dom";
 
-function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRerender, setDeleteRerender, isSavedStatus }) {
+function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRerender, setDeleteRerender, isSavedStatus, setSaveRerender, saveRerender }) {
   const [isSaved, setIsSaved] = useState(isSavedStatus);
   const location = useLocation().pathname;
   const savedMovies = (location === '/saved-movies') ? true : false;
@@ -16,25 +16,6 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
   // const currentUser = React.useContext(CurrentUserContext)
 
 
-  // console.log(isSavedStatus)
-
-  // useEffect(() => {
-  //   MainApi.getSavedMovies()
-  //     .then(data => {
-  //       setDataSaved(data.data)
-  //       // localStorage.setItem('savedMoviesArr', data.data)
-
-  //       setIsLoadSaved(true)
-  //     })
-  // }, [])
-
-  // console.log(delCardId)
-  // isLoadSaved && dataSaved.map(item => {
-  //   console.log(item.movieId);
-  //   console.log(card.id);
-  //   item.movieId === card.id && setDelCardId(item._id)
-  // })
-
   function getTimeFromMins(mins) {
     let hours = Math.trunc(mins / 60);
     let minutes = mins % 60;
@@ -43,6 +24,7 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
 
   const handleSavedMovie = (movie) => {
     console.log(movie)
+    setSaveRerender(saveRerender + 1);
     MainApi.saveMovie(movie)
       .then(data => console.log(data))
   }
@@ -54,6 +36,10 @@ function MoviesCard({ nameRU, image, trailerLink, duration, id, card, deleteRere
     //     if (el._id === id) savedMoviesArr.splice(i, 1)
     //   })
     // })
+    if (!savedMovies) {
+      setSaveRerender(saveRerender + 1);
+    }
+
     console.log(id)
     MainApi.deleteMovie(id)
       .then(data => {

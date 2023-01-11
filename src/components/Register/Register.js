@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import './Register.css';
@@ -18,9 +18,16 @@ function Register(props) {
   const [isEmailError, setIsEmailError] = useState(false);
   const emailReg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const history = useHistory();
-  const { loggedIn, setLoggedIn, setUserEmail } = useContext(CurrentUserContext);
+  const { loggedIn, setLoggedIn, setUserData } = useContext(CurrentUserContext);
   const [isInfoTooltipOpen, setInfoTooltipOpen] = useState(false);
   const [status, setStatus] = useState(false);
+  const [isFormSend, setFormSend] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      history.push('/');
+    }
+  }, [])
 
   function handlePasswordError(evt) {
     if (passwordRef.current.value.length > 5) {
@@ -48,6 +55,7 @@ function Register(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    setFormSend(true);
     MainApi.register(nameRef.current.value, emailRef.current.value, passwordRef.current.value)
       .then(data => {
         console.log(data);
@@ -59,9 +67,20 @@ function Register(props) {
                 setStatus(true);
                 localStorage.setItem('jwt', dataAuth.token);
                 localStorage.setItem('auth-status', true)
+                localStorage.setItem('search-movies', JSON.stringify([]));
+
                 // setCurrentUser(email)
                 setLoggedIn(true);
                 setInfoTooltipOpen(true)
+
+                MainApi.checkToken(localStorage.getItem('jwt'))
+                  .then(data => {
+                    console.log(data)
+                    if (data) {
+                      setUserData(data);
+                    }
+                  })
+
                 setTimeout(() => {
                   history.push('/movies');
                 }, 2000)
@@ -103,8 +122,8 @@ function Register(props) {
         />
         {isPassError ? <p className="reg__error">Что-то пошло не так...</p> : ''}
 
-        <button className={!isNameError && !isEmailError && !isPassError && nameRef.current.value && emailRef.current.value && passwordRef.current.value ? 'reg__button' : "reg__button reg__button_disabled"} type="submit"
-          disabled={!isEmailError && !isPassError ? false : true}>Зарегистрироваться</button>
+        <button className={!isNameError && !isEmailError && !isPassError && nameRef.current.value && emailRef.current.value && passwordRef.current.value && !isFormSend ? 'reg__button' : "reg__button reg__button_disabled"} type="submit"
+          disabled={!isEmailError && !isPassError && !isFormSend ? false : true}>Зарегистрироваться</button>
 
         <div className="reg__head-title">
           <p className="reg__head-text">
@@ -118,20 +137,3 @@ function Register(props) {
 }
 
 export default Register;
-
-{/* <div className='auth__input-wrap'>
-<input className={isActive ? 'auth__input auth__input_active' : 'auth__input'} onClick={() => setIsActive(true)} type="name" name="name" id="name"
-placeholder="Имя" onChange={handleNameChange} value={name || ''} minLength="2" maxLength="20" required />
-<span class="auth__floating-label">Имя</span>
-</div>
-<div className='auth__input-wrap'>
-<input className={isActive ? 'auth__input auth__input_active' : 'auth__input'} type="email" name="email" id="email"
-placeholder="Email" onChange={handleEmailChange} value={email || ''} required />
-<span class="auth__floating-label">Email</span>
-</div>
-<div className='auth__input-wrap'>
-<input className={isActive ? 'auth__input auth__input_active' : 'auth__input'} type="password" name="password" id="password" placeholder="Пароль"
-onChange={handlePasswordChange} value={password || ''} required minLength="5" maxLength="12" />
-<span class="auth__floating-label">Пароль</span>
-</div> */}
-
