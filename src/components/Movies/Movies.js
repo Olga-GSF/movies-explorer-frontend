@@ -40,7 +40,7 @@ function Movies() {
   return (
     <>
       <Header activePage='movies' />
-      <SearchForm data={data} isLoad={isLoad} setData={setData} searchedMoviesList={searchedMoviesList} setSearchedMoviesList={setSearchedMoviesList} />
+      <SearchForm data={data} isLoad={isLoad} setData={setData} searchedMoviesList={searchedMoviesList} setSearchedMoviesList={setSearchedMoviesList} saveRerender={saveRerender} setSaveRerender={setSaveRerender} />
       <MoviesCardList data={data} isLoad={isLoad} searchedMoviesList={searchedMoviesList} saveRerender={saveRerender} setSaveRerender={setSaveRerender} />
       <Footer />
       <InfoTooltipError errorMessage={error} isOpen={isInfoTooltipOpen} onClose={setInfoTooltipOpen} />

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import InfoTooltipError from '../../InfoToolTipError/InfoToolTipError';
 
 
-function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList }) {
+function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList, saveRerender, setSaveRerender }) {
   const [searchText, setSearchText] = useState(localStorage.getItem("search-text"));
   const [error, setError] = useState('');
   const [isError, setIsError] = useState(false);
@@ -66,7 +66,7 @@ function SearchForm({ data, isLoad, setSearchedMoviesList, searchedMoviesList })
     const filteredMovies = searchedMoviesList.filter(movie => {
       return movie.duration <= 40;
     })
-
+    setSaveRerender(saveRerender + 1)
     JSON.parse(localStorage.getItem("filter-status")) ? setSearchedMoviesList(filteredMovies) : setSearchedMoviesList(initialMovies)
   }
 
