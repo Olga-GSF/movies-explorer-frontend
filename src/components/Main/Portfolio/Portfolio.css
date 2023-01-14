@@ -1,0 +1,115 @@
+.portfolio {
+  max-width: 1280px;
+  min-height: 300px;
+  display: flex;
+  padding: 0 70px 0;
+  flex-direction: column;
+  margin: 101px auto 0;
+  box-sizing: border-box;
+  justify-content: flex-start;
+}
+
+.portfolio__title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.1;
+  color: #A0A0A0;
+  padding: 0;
+  margin: 0 0 50px;
+}
+
+.portfolio__links {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  list-style: none;  
+  min-height: 230px;
+  justify-content: space-between;
+}
+
+.portfolio__link {
+  padding: 0;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.5;
+  letter-spacing: -0.04em;
+  color: #000000;
+  text-decoration: none;
+  position: relative;
+  display: block;
+}
+
+.portfolio__link::before {
+  content:'';
+  background-image: url(../../../images/arrow.svg);
+  width: 18px;
+  height: 17px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  right: 1px;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+@media screen and (max-width: 1023px) {
+  .portfolio {
+    padding: 0 50px 90px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  .portfolio__title {
+    margin: 0 0 50px;
+  }
+
+  .portfolio__links {
+    max-width: 635px;
+    min-height: 230px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .portfolio {
+    margin: 70px auto 0;
+    max-width: 286px;
+    width: 100%;
+    padding: 0;
+  }
+
+  .portfolio__title {
+    margin: 0 0 40px 14px;
+    font-size: 14px;
+  }
+
+  .portfolio__links {
+    justify-content: space-around;
+    min-height: 164px;
+    margin: 0 auto 70px;
+    width: 100%;
+    max-width: 268px;
+  }
+
+  .portfolio__link {
+    font-size: 16px;
+  }
+
+  .portfolio__link::before {
+    /* background-image: url(../../../images/arrow-small.svg); */  
+    width: 11px;
+    height: 11px;
+  }
+}
+
+
+/* .portfolio__container {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 639px) {
+  .portfolio__container {
+    max-width: 320px;
+  }
+} */
