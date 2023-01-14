@@ -70,6 +70,7 @@ function Login(props) {
       })
       .catch((err) => {
         setStatus(false)
+        setFormSend(false)
         setInfoTooltipOpen(true) //открываем попап InfoTooltip
         console.log(err);
       })

@@ -96,6 +96,7 @@ function Register(props) {
       .catch((err) => {
         setLoggedIn(false)
         setInfoTooltipOpen(true)
+        setFormSend(false)
         console.log(err);
       })
   }
